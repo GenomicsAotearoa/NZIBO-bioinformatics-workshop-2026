@@ -1,0 +1,45 @@
+---
+title: ""
+format: html
+---
+
+# Introduction to RNA sequencing 
+
+RNA sequencing (RNA-seq) is the process of sequencing the nucleic acid RNA. There are a few types of RNA, but the main one that we will talk about today is mRNA -- messenger RNA -- and is generally the molecule people mean when they refer to RNAseq. mRNA is the messenger molecule in the cell that encodes a *transcript* of a gene, which is then *translated* into a protein by ribosomes in the cell. Proteins have an extremely diverse array of tasks that they perform in the cell and the body -- we won't get into it here, but suffice to say all functions in your body depend on proteins! 
+
+RNAseq is a relatively quick and inexpensive method for capturing a snapshot of all the genes that are being expressed at any particular time in a specific tissue or location. This makes it a fantastic and versatile technology for understanding gene expression dynamics and infer what sort of cellular processes are happening at a given time, in a given tissue or under a given stimulus. 
+
+
+## Our example RNA-seq dataset 
+
+The data used in this workflow is an RNA-seq experiment of **airway smooth muscle cells treated with dexamethasone**, a synthetic glucocorticoid steroid with anti-inflammatory effects. Glucocorticoids are used, for example, in asthma patients to prevent or reduce inflammation of the airways. In the experiment, four primary human airway smooth muscle cell lines were treated with 1 micromolar dexamethasone for 18 hours. For each of the four cell lines, we have a treated and an untreated sample. 
+
+The reference for the experiment is:
+
+*Himes BE, Jiang X, Wagner P, Hu R, Wang Q, Klanderman B, Whitaker RM, Duan Q, Lasky-Su J, Nikolos C, Jester W, Johnson M, Panettieri R Jr, Tantisira KG, Weiss ST, Lu Q. “RNA-Seq Transcriptome Profiling Identifies CRISPLD2 as a Glucocorticoid Responsive Gene that Modulates Cytokine Function in Airway Smooth Muscle Cells.” PLoS One. 2014 Jun 13;9(6):e99625. PMID: 24926665. GEO: GSE52778.*
+
+[Source: Bioconductor course materials; 6. RNA-Seq Differential Expression; Martin Morgan](https://www.bioconductor.org/help/course-materials/2015/Uruguay2015/V6-RNASeq.html)
+
+#### Discussion 🧐
+
+Based on this description, what sort of questions do you think you might want to answer with gene expression analysis of this dataset?
+
+::: {.callout-tip collapse="true"}
+# SOLUTIONS
+
+1. Are there gene expression differences in the response of the cells to dexamethasone compared to the untreated control samples?
+2. Are any of the cell lines 'better' at responding to dexamethasone than the other cell lines?
+3. Can the gene expression tell us if this might be a suitable drug to treat asthma?
+4. any others you can think of? 
+
+:::
+
+## Exploring our data 
+
+We have prepared some files for you, which are in an open repository online. 
+
+Let's load them in to our RStudio and orientate ourselves to the data. 
+
+```{r}
+
+```

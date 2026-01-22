@@ -1,0 +1,43 @@
+project: 
+  type: website
+  output-dir: docs
+  resources:
+    - figures
+
+website:
+  title: "NZIBO Bioinformatics"
+  favicon: theme-images/GA-image-black-favicon.png
+  open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
+  sidebar:
+    style: "docked"
+    left:
+    contents:
+      - text: "_test styles"
+        href: test-styling.qmd
+      - text: "Home"
+        href: index.qmd
+      - text: "Introduction to the R programming language"
+        href: intro-to-R.qmd
+      - text: "Introduction to RNAseq"
+        href: intro-to-rnaseq.qmd
+
+    
+    tools:
+      - icon: github
+        text: Github
+        href: https://github.com/GenomicsAotearoa/
+
+
+format:
+  html:
+    code-tools: false
+    code-block-bg: true
+    code-block-title: true
+    code-overflow: wrap
+    page-layout: full
+    toc: true
+    toc-depth: 4
+    css: styles.css
+    navigation: true
+    page-navigation: true
+

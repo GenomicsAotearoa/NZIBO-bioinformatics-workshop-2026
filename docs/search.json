@@ -1,0 +1,232 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "NZIBO bioinformatics workshop",
+    "section": "",
+    "text": "* insert picture here *\n\n\nThis workshop was designed for the NZIBO cohort to help get you started with bioinformatic skill sets and thinking. Bioinformatics is computational skills specifically for biologists, often skills needed to analyse genomic data sets (e.g., genomes, genes, transcriptomes, and many other kinds of data sets that revolve around the nucleic acids DNA and RNA!). Therefore there are many different tools you can use. A few programming langaues, such as bash and R, transcend any one particular topic and are used by almost all scientific disciplines to manipulate and investigate data.\n\n\n\n\nIntroduction to the R programming language\nIntroduction to gene expression using an RNA sequencing data set.\n\n\n\n\n\nUsing the shell\n\n\n\n\nMonday 13th April, 2026\n\n\n\nThis workshop was developed by Dr Chloé van der Burg for the bioinformatics teaching of the NZIBO 2026 cohort. Material was re-used from the Genomics Aotearoa Bioinformatics Training Programme, including the Introduction to R and RNAseq data analysis workflow.\n\n\n\n\nMade with ❤️ and Quarto",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#getting-started-with-bioinformatics",
+    "href": "index.html#getting-started-with-bioinformatics",
+    "title": "NZIBO bioinformatics workshop",
+    "section": "",
+    "text": "This workshop was designed for the NZIBO cohort to help get you started with bioinformatic skill sets and thinking. Bioinformatics is computational skills specifically for biologists, often skills needed to analyse genomic data sets (e.g., genomes, genes, transcriptomes, and many other kinds of data sets that revolve around the nucleic acids DNA and RNA!). Therefore there are many different tools you can use. A few programming langaues, such as bash and R, transcend any one particular topic and are used by almost all scientific disciplines to manipulate and investigate data.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#whats-covered-in-this-workshop",
+    "href": "index.html#whats-covered-in-this-workshop",
+    "title": "NZIBO bioinformatics workshop",
+    "section": "",
+    "text": "Introduction to the R programming language\nIntroduction to gene expression using an RNA sequencing data set.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#whats-not-covered-in-this-workshop",
+    "href": "index.html#whats-not-covered-in-this-workshop",
+    "title": "NZIBO bioinformatics workshop",
+    "section": "",
+    "text": "Using the shell",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#timetable",
+    "href": "index.html#timetable",
+    "title": "NZIBO bioinformatics workshop",
+    "section": "",
+    "text": "Monday 13th April, 2026",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#attribution",
+    "href": "index.html#attribution",
+    "title": "NZIBO bioinformatics workshop",
+    "section": "",
+    "text": "This workshop was developed by Dr Chloé van der Burg for the bioinformatics teaching of the NZIBO 2026 cohort. Material was re-used from the Genomics Aotearoa Bioinformatics Training Programme, including the Introduction to R and RNAseq data analysis workflow.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#section",
+    "href": "index.html#section",
+    "title": "NZIBO bioinformatics workshop",
+    "section": "",
+    "text": "Made with ❤️ and Quarto",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "test-styling.html",
+    "href": "test-styling.html",
+    "title": "test styling",
+    "section": "",
+    "text": "Note\n\n\n\nstuff in note",
+    "crumbs": [
+      "_test styles"
+    ]
+  },
+  {
+    "objectID": "test-styling.html#header-2",
+    "href": "test-styling.html#header-2",
+    "title": "test styling",
+    "section": "Header 2",
+    "text": "Header 2\ntext\n\nHeader 3\ntext\n\nHeader 4\ntext\n\nHeader 5\ntext",
+    "crumbs": [
+      "_test styles"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html",
+    "href": "intro-to-R.html",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "Key points\n\n\n\n\nR is a powerful, popular open-source scripting language\n\nYou can customise the layout of RStudio, and use the project feature to manage the files and packages used in your analysis\n\nRStudio allows you to run R in an easy-to-use interface and makes it easy to find help\n\n\n\n\n\n\n\n\n\n\nObjectives\n\n\n\n\nKnow advantages of analysing data in R\n\nKnow advantages of using RStudio\n\nCreate an RStudio project, and know the benefits of working within a project\n\nBe able to customise the RStudio layout\n\nBe able to locate and change the current working directory with getwd() and setwd()\n\nCompose an R script file containing comments and commands\n\nUnderstand what an R function is\n\nLocate help for an R function using ?, ??, and args()\n\n\n\n\n\nR has been around since 1995, and was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand. R is based off the S programming language developed at Bell Labs and was developed to teach introductory statistics. See this slide deckby Ross Ihaka for more info on the subject.\n\n\n\nAt more than 30 years old, R is fairly mature and growing in popularity. However, programming isn’t a popularity contest. Here are key advantages of analysing data in R:\n\nR is open source. This means R is free - an advantage that means anyone, anywhere can access it. It also means that R is actively developed by a community (see r-project.org), and there are regular updates.\nR is widely used. Ok, maybe programming is a popularity contest. Because, R is used in many areas (not just bioinformatics), you are more likely to find help online when you need it. Chances are,almost any error message you run into, someone else has already experienced.\nR is powerful. R runs on multiple platforms (Windows/MacOS/Linux). It can work with much larger datasets than popular spreadsheet programs like Microsoft Excel, and because of its scripting capabilities is far more reproducible. Also, there are thousands of available software packages for science, including genomics and other areas of life science.\n\n\n\n\nIn these lessons, we will be making use of a software called RStudio, an Integrated Development Environment (IDE). RStudio, like most IDEs, provides a graphical interface to R, making it more user-friendly, and providing dozens of useful features. We will introduce additional benefits of using RStudio as you cover the lessons. In this case, we are specifically using RStudio Server, a version of RStudio that can be accessed in your web browser. RStudio Server has the same features of the Desktop version of RStudio you could download as standalone software.\n\n\n\n\nHere are the major windows (or panes) of the RStudio environment:\n\n\nSource: This pane is where you will write/view R scripts. Some outputs (such as if you view a dataset using View()) will appear as a tab here.\nConsole/Terminal/Jobs: This is actually where you see the execution of commands. This is the same display you would see if you were using R at the command line without RStudio. You can work interactively (i.e. enter R commands here), but for the most part we will run a script (or lines in a script) in the source pane and watch their execution and output here. The “Terminal” tab give you access to the BASH terminal (the Linux operating system, unrelated to R). RStudio also allows you to run jobs (analyses) in the background. This is useful if some analysis will take a while to run. You can see the status of those jobs in the background.\nEnvironment/History: Here, RStudio will show you what datasets and objects (variables) you have created and which are defined in memory. You can also see some properties of objects/datasets such as their type and dimensions. The “History” tab contains a history of the R commands you’ve executed R.\nFiles/Plots/Packages/Help/Viewer: This multi-purpose pane will show you the contents of directories on your computer. You can also use the “Files” tab to navigate and set the working directory. The “Plots” tab will show the output of any plots generated. In “Packages” you will see what packages are actively loaded, or you can attach installed packages. “Help” will display help files for R functions and packages. “Viewer” will allow you to view local web content (e.g. HTML outputs).\n\nAll of the panes in RStudio have configuration options. For example, you can minimise/maximise a pane, or by moving your mouse in the space between panes you can resize as needed. The most important customisation options for pane layout are in the View menu. Other options such as font sizes, colors/themes, and more are in the Tools menu under Global Options.\n\nNote: RStudio runs R, but R is not RStudio.\n\n\n\n\n\n\n\nExtra for experts - RStudio Projects\n\n\n\n\n\nCreate an RStudio project\nOne of the benefits you can take advantage of in RStudio is something called an RStudio Project. An RStudio project allows you to more easily:\n\nSave data, files, variables, packages, etc. related to a specific analysis project\n\nRestart work where you left off\n\nCollaborate, especially if you are using version control such as git\n\n\nTo create a project, go to the File menu, and click New Project\n\n\n\nIn the window that opens select either Existing Directory, if you already have a folder you want to use, or select New Directory if you want to make a new folder now and associate it with an R project. If you select Existing Directory, then select Browse… and then choose and click your folder on your computer.\nFinally click Create Project. In the “Files” tab of your output pane (more about the RStudio layout above), you should see an RStudio project file, name-of-folder.Rproj. All RStudio projects end with the .Rproj file extension.\n\n\nHandy tip! Name your folders on your computer without spaces – use hyphens or underscores instead. Many programming languages do not like spaces in the names of files or folders, so you will save yourself a lot of headaches by avoiding spaces from the start.\n\n\n\n\n\n\n\n\n\nNow that we are ready to start exploring R, we will want to keep a record of the commands we are using. To do this we can create an R script:\n\nClick the File menu and select New File and then R Script.\nBefore we go any further, save your script by clicking the save/disk icon that is in the bar above the first line in the script editor, or click the File menu and select Save.\nIn the Save File window that opens, name your file bioinformatics-day. The new script bioinformatics-day.R should appear under Files in the output pane. By convention, R scripts end with the file extension .R.\n\n\nYou can open .R files in any text editor program, like Notepad.\n\n\n\n\nNow that we have covered the more aesthetic aspects of RStudio, we can get to work using some commands. We will write, execute, and save the commands we learn in our genomics_r_basics.R script that is loaded in the Source pane. First, lets see what directory we are in. To do so, type the following command into the script:\n\ngetwd()\n\nTo execute this command, make sure your cursor is on the same line the command is written. Then click the Run button that is just above the first line of your script in the header of the Source pane.\nIn the console, we expect to see an output similar to this:\n[1] \"/Users/username\"\n\nSince we will be learning several commands, we may already want to keep some short notes in our script to explain the purpose of the command. Entering a # before any line in an R script turns that line into a comment, which R will not try to interpret as code. Edit your script to include a comment on the purpose of commands you are learning, e.g.:\n\n# this command shows the current working directory getwd()\n\nFor the purposes of this exercise we want you to be in the directory \"/home/shared/&lt;USERID&gt;/R4Genomics\". What if you weren’t? You can set your home directory using the setwd() command. Enter this command in your script, but don’t run this yet.\n# This sets the working directory\nsetwd()\nYou may have guessed, you need to tell the setwd() command what directory you want to set as your working directory. To do so, inside of the parentheses, open a set of quotes \"\". Inside the quotes enter a / which is the root directory for Linux. Next, use the Tab key, to take advantage of RStudio’s tab-autocompletion method, to select home, shared, your &lt;USERID&gt; and R4Genomics directory. The path in your script should look like this:\n!!! r-project\n```r\n# This sets the working directory \nsetwd(\"/home/shared/&lt;USERID&gt;/R4Genomics\")\n```\nWhen you run this command, the console repeats the command, but gives you no output. Instead, you see the blank R prompt: &gt;. Congratulations! Although it seems small, knowing what your working directory is and being able to set your working directory is the first step to analyzing your data.\n\n\n\nA function in R (or any computing language) is a short program that takes some input and returns some output. Functions may seem like an advanced topic (and they are), but you have already used at least one function in R. getwd() is a function! The next sections will help you understand what is happening in any R script.\n\n\n\n\n\n\nExercise 🧠🏋️ – What do these functions do?\n\n\n\nTry the following functions by writing them in your script. See if you can guess what they do, and make sure to add comments to your script about your assumed purpose.\n\ndir()\nsessionInfo()\ndate()\nSys.time()\n.libPaths()\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ndir() lists files in the working directory\n\nsessionInfo() gives the version of R and additional info including on attached packages\n\ndate() gives the current date\n\nSys.time() gives the current time\n\n.libPaths() shows what libraries are available\n\nNotice: Commands are case sensitive!\n\n\n\nYou have hopefully noticed a pattern: an R function has three key properties:\n\nFunctions have a name (e.g. dir, getwd); note that functions are case sensitive!\nFollowing the name, functions have a pair of ()\nInside the parentheses, a function may take 0 or more arguments\n\nAn argument may be a specific input for your function and/or may modify the function’s behavior. For example the function round() will round a number with a decimal:\n\n# This will round a number to the nearest integer\n   \nround(3.14159)\n\n[1] 3\n\n\n\n\n\nWhat if you wanted to round to one significant digit? round() can do this, but you may first need to read the help to find out how. To see the help (in R sometimes also called a “vignette”) enter a ? in front of the function name:\n\n?round()\n\nThe “Help” tab will show you information (often, too much information). You will slowly learn how to read and make sense of help files. Checking the “Usage” or “Examples” headings is often a good place to look first. If you look under “Arguments,” we also see what arguments we can pass to this function to modify its behavior.\nround() takes two arguments, x, which is the number to be rounded, and a digits argument. The = sign indicates that a default (in this case 0) is already set. Since x is not set, round() requires we provide it, in contrast to digits where R will use the default value 0 unless you explicitly provide a different value. We can explicitly set the digits argument when we call the function:\n\nround(3.14159, digits = 2)\n\n[1] 3.14\n\n\n\n\n\nFunctions, like the two we have just used getwd() and round(), come from packages, which you can download to your computer then load into R as a library. Some packages are automatically installed as part of base R when you download R and Rstudio – the two functions above are examples that come from {base}. As we go along today we will discuss more on where to look for the libraries and packages that contain functions you want to use. For now, be aware that two important ones are:\n\nCRAN, the main repository for R\nBioconductor, a popular repository for bioinformatics-related R packages.\n\nThese repositories store many packages that have been developed by the R community and can be browsed and downloaded by anyone.\n\n\n\nHere is one last bonus we will mention about RStudio. It’s difficult to remember all of the arguments and definitions associated with a given function. When you start typing the name of a function and hit the Tab key, RStudio will display functions and associated help:\n\nYou can see that the “linear model” function lm() comes from a package called {stats}, which like {base} also comes by default with R.\nOnce you type a function, hitting the Tab inside the parentheses will show you the function’s arguments and provide additional help for each of these arguments.",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html#a-brief-history-of-r",
+    "href": "intro-to-R.html#a-brief-history-of-r",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "R has been around since 1995, and was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand. R is based off the S programming language developed at Bell Labs and was developed to teach introductory statistics. See this slide deckby Ross Ihaka for more info on the subject.",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html#advantages-of-using-r",
+    "href": "intro-to-R.html#advantages-of-using-r",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "At more than 30 years old, R is fairly mature and growing in popularity. However, programming isn’t a popularity contest. Here are key advantages of analysing data in R:\n\nR is open source. This means R is free - an advantage that means anyone, anywhere can access it. It also means that R is actively developed by a community (see r-project.org), and there are regular updates.\nR is widely used. Ok, maybe programming is a popularity contest. Because, R is used in many areas (not just bioinformatics), you are more likely to find help online when you need it. Chances are,almost any error message you run into, someone else has already experienced.\nR is powerful. R runs on multiple platforms (Windows/MacOS/Linux). It can work with much larger datasets than popular spreadsheet programs like Microsoft Excel, and because of its scripting capabilities is far more reproducible. Also, there are thousands of available software packages for science, including genomics and other areas of life science.",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html#introducing-rstudio-server",
+    "href": "intro-to-R.html#introducing-rstudio-server",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "In these lessons, we will be making use of a software called RStudio, an Integrated Development Environment (IDE). RStudio, like most IDEs, provides a graphical interface to R, making it more user-friendly, and providing dozens of useful features. We will introduce additional benefits of using RStudio as you cover the lessons. In this case, we are specifically using RStudio Server, a version of RStudio that can be accessed in your web browser. RStudio Server has the same features of the Desktop version of RStudio you could download as standalone software.",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html#overview-and-customisation-of-the-rstudio-layout",
+    "href": "intro-to-R.html#overview-and-customisation-of-the-rstudio-layout",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "Here are the major windows (or panes) of the RStudio environment:\n\n\nSource: This pane is where you will write/view R scripts. Some outputs (such as if you view a dataset using View()) will appear as a tab here.\nConsole/Terminal/Jobs: This is actually where you see the execution of commands. This is the same display you would see if you were using R at the command line without RStudio. You can work interactively (i.e. enter R commands here), but for the most part we will run a script (or lines in a script) in the source pane and watch their execution and output here. The “Terminal” tab give you access to the BASH terminal (the Linux operating system, unrelated to R). RStudio also allows you to run jobs (analyses) in the background. This is useful if some analysis will take a while to run. You can see the status of those jobs in the background.\nEnvironment/History: Here, RStudio will show you what datasets and objects (variables) you have created and which are defined in memory. You can also see some properties of objects/datasets such as their type and dimensions. The “History” tab contains a history of the R commands you’ve executed R.\nFiles/Plots/Packages/Help/Viewer: This multi-purpose pane will show you the contents of directories on your computer. You can also use the “Files” tab to navigate and set the working directory. The “Plots” tab will show the output of any plots generated. In “Packages” you will see what packages are actively loaded, or you can attach installed packages. “Help” will display help files for R functions and packages. “Viewer” will allow you to view local web content (e.g. HTML outputs).\n\nAll of the panes in RStudio have configuration options. For example, you can minimise/maximise a pane, or by moving your mouse in the space between panes you can resize as needed. The most important customisation options for pane layout are in the View menu. Other options such as font sizes, colors/themes, and more are in the Tools menu under Global Options.\n\nNote: RStudio runs R, but R is not RStudio.\n\n\n\n\n\n\n\nExtra for experts - RStudio Projects\n\n\n\n\n\nCreate an RStudio project\nOne of the benefits you can take advantage of in RStudio is something called an RStudio Project. An RStudio project allows you to more easily:\n\nSave data, files, variables, packages, etc. related to a specific analysis project\n\nRestart work where you left off\n\nCollaborate, especially if you are using version control such as git\n\n\nTo create a project, go to the File menu, and click New Project\n\n\n\nIn the window that opens select either Existing Directory, if you already have a folder you want to use, or select New Directory if you want to make a new folder now and associate it with an R project. If you select Existing Directory, then select Browse… and then choose and click your folder on your computer.\nFinally click Create Project. In the “Files” tab of your output pane (more about the RStudio layout above), you should see an RStudio project file, name-of-folder.Rproj. All RStudio projects end with the .Rproj file extension.\n\n\nHandy tip! Name your folders on your computer without spaces – use hyphens or underscores instead. Many programming languages do not like spaces in the names of files or folders, so you will save yourself a lot of headaches by avoiding spaces from the start.",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html#creating-your-first-r-script",
+    "href": "intro-to-R.html#creating-your-first-r-script",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "Now that we are ready to start exploring R, we will want to keep a record of the commands we are using. To do this we can create an R script:\n\nClick the File menu and select New File and then R Script.\nBefore we go any further, save your script by clicking the save/disk icon that is in the bar above the first line in the script editor, or click the File menu and select Save.\nIn the Save File window that opens, name your file bioinformatics-day. The new script bioinformatics-day.R should appear under Files in the output pane. By convention, R scripts end with the file extension .R.\n\n\nYou can open .R files in any text editor program, like Notepad.",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html#getting-to-work-with-r-navigating-directories",
+    "href": "intro-to-R.html#getting-to-work-with-r-navigating-directories",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "Now that we have covered the more aesthetic aspects of RStudio, we can get to work using some commands. We will write, execute, and save the commands we learn in our genomics_r_basics.R script that is loaded in the Source pane. First, lets see what directory we are in. To do so, type the following command into the script:\n\ngetwd()\n\nTo execute this command, make sure your cursor is on the same line the command is written. Then click the Run button that is just above the first line of your script in the header of the Source pane.\nIn the console, we expect to see an output similar to this:\n[1] \"/Users/username\"\n\nSince we will be learning several commands, we may already want to keep some short notes in our script to explain the purpose of the command. Entering a # before any line in an R script turns that line into a comment, which R will not try to interpret as code. Edit your script to include a comment on the purpose of commands you are learning, e.g.:\n\n# this command shows the current working directory getwd()\n\nFor the purposes of this exercise we want you to be in the directory \"/home/shared/&lt;USERID&gt;/R4Genomics\". What if you weren’t? You can set your home directory using the setwd() command. Enter this command in your script, but don’t run this yet.\n# This sets the working directory\nsetwd()\nYou may have guessed, you need to tell the setwd() command what directory you want to set as your working directory. To do so, inside of the parentheses, open a set of quotes \"\". Inside the quotes enter a / which is the root directory for Linux. Next, use the Tab key, to take advantage of RStudio’s tab-autocompletion method, to select home, shared, your &lt;USERID&gt; and R4Genomics directory. The path in your script should look like this:\n!!! r-project\n```r\n# This sets the working directory \nsetwd(\"/home/shared/&lt;USERID&gt;/R4Genomics\")\n```\nWhen you run this command, the console repeats the command, but gives you no output. Instead, you see the blank R prompt: &gt;. Congratulations! Although it seems small, knowing what your working directory is and being able to set your working directory is the first step to analyzing your data.",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html#using-functions-in-r-without-needing-to-master-them",
+    "href": "intro-to-R.html#using-functions-in-r-without-needing-to-master-them",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "A function in R (or any computing language) is a short program that takes some input and returns some output. Functions may seem like an advanced topic (and they are), but you have already used at least one function in R. getwd() is a function! The next sections will help you understand what is happening in any R script.\n\n\n\n\n\n\nExercise 🧠🏋️ – What do these functions do?\n\n\n\nTry the following functions by writing them in your script. See if you can guess what they do, and make sure to add comments to your script about your assumed purpose.\n\ndir()\nsessionInfo()\ndate()\nSys.time()\n.libPaths()\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ndir() lists files in the working directory\n\nsessionInfo() gives the version of R and additional info including on attached packages\n\ndate() gives the current date\n\nSys.time() gives the current time\n\n.libPaths() shows what libraries are available\n\nNotice: Commands are case sensitive!\n\n\n\nYou have hopefully noticed a pattern: an R function has three key properties:\n\nFunctions have a name (e.g. dir, getwd); note that functions are case sensitive!\nFollowing the name, functions have a pair of ()\nInside the parentheses, a function may take 0 or more arguments\n\nAn argument may be a specific input for your function and/or may modify the function’s behavior. For example the function round() will round a number with a decimal:\n\n# This will round a number to the nearest integer\n   \nround(3.14159)\n\n[1] 3",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html#getting-help-with-function-arguments",
+    "href": "intro-to-R.html#getting-help-with-function-arguments",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "What if you wanted to round to one significant digit? round() can do this, but you may first need to read the help to find out how. To see the help (in R sometimes also called a “vignette”) enter a ? in front of the function name:\n\n?round()\n\nThe “Help” tab will show you information (often, too much information). You will slowly learn how to read and make sense of help files. Checking the “Usage” or “Examples” headings is often a good place to look first. If you look under “Arguments,” we also see what arguments we can pass to this function to modify its behavior.\nround() takes two arguments, x, which is the number to be rounded, and a digits argument. The = sign indicates that a default (in this case 0) is already set. Since x is not set, round() requires we provide it, in contrast to digits where R will use the default value 0 unless you explicitly provide a different value. We can explicitly set the digits argument when we call the function:\n\nround(3.14159, digits = 2)\n\n[1] 3.14",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html#libraries-packages-functions",
+    "href": "intro-to-R.html#libraries-packages-functions",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "Functions, like the two we have just used getwd() and round(), come from packages, which you can download to your computer then load into R as a library. Some packages are automatically installed as part of base R when you download R and Rstudio – the two functions above are examples that come from {base}. As we go along today we will discuss more on where to look for the libraries and packages that contain functions you want to use. For now, be aware that two important ones are:\n\nCRAN, the main repository for R\nBioconductor, a popular repository for bioinformatics-related R packages.\n\nThese repositories store many packages that have been developed by the R community and can be browsed and downloaded by anyone.",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-R.html#rstudio-contextual-help",
+    "href": "intro-to-R.html#rstudio-contextual-help",
+    "title": "Introducing R and RStudio",
+    "section": "",
+    "text": "Here is one last bonus we will mention about RStudio. It’s difficult to remember all of the arguments and definitions associated with a given function. When you start typing the name of a function and hit the Tab key, RStudio will display functions and associated help:\n\nYou can see that the “linear model” function lm() comes from a package called {stats}, which like {base} also comes by default with R.\nOnce you type a function, hitting the Tab inside the parentheses will show you the function’s arguments and provide additional help for each of these arguments.",
+    "crumbs": [
+      "Introduction to the R programming language"
+    ]
+  },
+  {
+    "objectID": "intro-to-rnaseq.html",
+    "href": "intro-to-rnaseq.html",
+    "title": "Introduction to RNA sequencing",
+    "section": "",
+    "text": "RNA sequencing (RNA-seq) is the process of sequencing the nucleic acid RNA. There are a few types of RNA, but the main one that we will talk about today is mRNA – messenger RNA – and is generally the molecule people mean when they refer to RNAseq. mRNA is the messenger molecule in the cell that encodes a transcript of a gene, which is then translated into a protein by ribosomes in the cell. Proteins have an extremely diverse array of tasks that they perform in the cell and the body – we won’t get into it here, but suffice to say all functions in your body depend on proteins!\nRNAseq is a relatively quick and inexpensive method for capturing a snapshot of all the genes that are being expressed at any particular time in a specific tissue or location. This makes it a fantastic and versatile technology for understanding gene expression dynamics and infer what sort of cellular processes are happening at a given time, in a given tissue or under a given stimulus.\n\n\nThe data used in this workflow is an RNA-seq experiment of airway smooth muscle cells treated with dexamethasone, a synthetic glucocorticoid steroid with anti-inflammatory effects. Glucocorticoids are used, for example, in asthma patients to prevent or reduce inflammation of the airways. In the experiment, four primary human airway smooth muscle cell lines were treated with 1 micromolar dexamethasone for 18 hours. For each of the four cell lines, we have a treated and an untreated sample.\nThe reference for the experiment is:\nHimes BE, Jiang X, Wagner P, Hu R, Wang Q, Klanderman B, Whitaker RM, Duan Q, Lasky-Su J, Nikolos C, Jester W, Johnson M, Panettieri R Jr, Tantisira KG, Weiss ST, Lu Q. “RNA-Seq Transcriptome Profiling Identifies CRISPLD2 as a Glucocorticoid Responsive Gene that Modulates Cytokine Function in Airway Smooth Muscle Cells.” PLoS One. 2014 Jun 13;9(6):e99625. PMID: 24926665. GEO: GSE52778.\nSource: Bioconductor course materials; 6. RNA-Seq Differential Expression; Martin Morgan\n\n\nBased on this description, what sort of questions do you think you might want to answer with gene expression analysis of this dataset?\n\n\n\n\n\n\nSOLUTIONS\n\n\n\n\n\n\nAre there gene expression differences in the response of the cells to dexamethasone compared to the untreated control samples?\nAre any of the cell lines ‘better’ at responding to dexamethasone than the other cell lines?\nCan the gene expression tell us if this might be a suitable drug to treat asthma?\nany others you can think of?\n\n\n\n\n\n\n\n\nWe have prepared some files for you, which are in an open repository online.\nLet’s load them in to our RStudio and orientate ourselves to the data.",
+    "crumbs": [
+      "Introduction to RNAseq"
+    ]
+  },
+  {
+    "objectID": "intro-to-rnaseq.html#our-example-rna-seq-dataset",
+    "href": "intro-to-rnaseq.html#our-example-rna-seq-dataset",
+    "title": "Introduction to RNA sequencing",
+    "section": "",
+    "text": "The data used in this workflow is an RNA-seq experiment of airway smooth muscle cells treated with dexamethasone, a synthetic glucocorticoid steroid with anti-inflammatory effects. Glucocorticoids are used, for example, in asthma patients to prevent or reduce inflammation of the airways. In the experiment, four primary human airway smooth muscle cell lines were treated with 1 micromolar dexamethasone for 18 hours. For each of the four cell lines, we have a treated and an untreated sample.\nThe reference for the experiment is:\nHimes BE, Jiang X, Wagner P, Hu R, Wang Q, Klanderman B, Whitaker RM, Duan Q, Lasky-Su J, Nikolos C, Jester W, Johnson M, Panettieri R Jr, Tantisira KG, Weiss ST, Lu Q. “RNA-Seq Transcriptome Profiling Identifies CRISPLD2 as a Glucocorticoid Responsive Gene that Modulates Cytokine Function in Airway Smooth Muscle Cells.” PLoS One. 2014 Jun 13;9(6):e99625. PMID: 24926665. GEO: GSE52778.\nSource: Bioconductor course materials; 6. RNA-Seq Differential Expression; Martin Morgan\n\n\nBased on this description, what sort of questions do you think you might want to answer with gene expression analysis of this dataset?\n\n\n\n\n\n\nSOLUTIONS\n\n\n\n\n\n\nAre there gene expression differences in the response of the cells to dexamethasone compared to the untreated control samples?\nAre any of the cell lines ‘better’ at responding to dexamethasone than the other cell lines?\nCan the gene expression tell us if this might be a suitable drug to treat asthma?\nany others you can think of?",
+    "crumbs": [
+      "Introduction to RNAseq"
+    ]
+  },
+  {
+    "objectID": "intro-to-rnaseq.html#exploring-our-data",
+    "href": "intro-to-rnaseq.html#exploring-our-data",
+    "title": "Introduction to RNA sequencing",
+    "section": "",
+    "text": "We have prepared some files for you, which are in an open repository online.\nLet’s load them in to our RStudio and orientate ourselves to the data.",
+    "crumbs": [
+      "Introduction to RNAseq"
+    ]
+  }
+]
