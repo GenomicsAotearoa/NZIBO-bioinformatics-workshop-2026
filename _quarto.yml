@@ -20,6 +20,10 @@ website:
         href: intro-to-R.qmd
       - text: "Introduction to RNAseq"
         href: intro-to-rnaseq.qmd
+      - text: "Digging deeper"
+        href: digging-deeper.qmd
+      - text: "Identify Differentially Expressed Genes"
+        href: degs.qmd
 
     
     tools:

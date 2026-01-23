@@ -338,3 +338,96 @@ show you the function's arguments and provide additional help for each of these
 arguments.
 
 ![](figures/studio_contexthelp2.png)
+
+## Important R things to know
+
+We don't have time to learn everything there is to know about R -- in fact, people who have been using R for 20+ years still learn new things all the time! But, there a couple of key things about how R works that you should know now before we move on to the next section. We'll be learning more R things a long the way as we learn gene expression.   
+
+#### **Objects** and **assignment**
+
+To work with data in R we need to make **objects**, which we **assign** a value. 
+
+**To create an object, you need:**
+
+-   A name (e.g. `a`)
+-   A value (e.g. `1`)
+-   The assignment operator (`<-`)
+
+In your script, use the R assignment operator `<-` to assign `1` to the object `a` as shown. Remember to leave
+a comment in the line above (using the `#`) to explain what you are doing:
+
+
+```{r}
+# This line creates the object 'a' and assigns it the value '1'
+    
+a <- 1
+```
+
+Next, run this line of code in your script. You can run a line of code
+by hitting the `Run` button that is above the first line of your
+script in the header of the 'Source' pane or you can use the appropriate shortcut:
+
+- Windows execution shortcut: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+- Mac execution shortcut: <kbd>Cmd(⌘)</kbd> + <kbd>Enter</kbd>
+
+To run multiple lines of code, highlight all the line you wish to run
+and then hit Run or use the shortcut key combo listed above.
+In the RStudio 'Console', you should see:
+
+```{r}
+#| eval: false
+
+a <- 1
+>
+```
+
+The 'Console' will display lines of code run from a script and any outputs orstatus/warning/error messages (usually in red).
+The `>` indicates R is waiting for an instruction again from you. Often when your code works, there will be no obvious output. If it didn't you will usually get an error message.
+
+In the 'Environment' window you will also get a table:
+
+| Values |     |
+| ------ | --- |
+| a      | 1   |
+
+The 'Environment' window allows you to keep track of the objects you have
+created in R.
+
+
+#### Mathematical operations
+
+R was originally designed for statistics and as such is a very powerful calculator. Most of the usual mathematical operators work as you may expect. Let's try a few.
+
+Pure math works in R with literal numbers, for example:
+```{r}
+(1 + (5 ** 0.5)) / 2
+```
+
+The `**` operator is a way to write "to the power of". Other operators such as subtract `-` and multiply `*` all work too. 
+
+Next, let's do some maths with objects. Much like algebra, objects can be part of mathematical equations. Create an object that has the value of number of pairs of human chromosomes as follows:
+
+```{r}
+
+hum_chr_num <- 23
+```
+
+Now, see what happens if you want to find the number of chromosomes in a diploid human cell. You can times the object by 2 to get the result:
+
+```{r}
+hum_chr_num * 2
+```
+
+Note that this output 46 is not stored anywhere, and the object `hum_chr_num` is not changed in any way. The only way to save or change an object is to **assign** a new value to it.
+
+If we wanted to store the 46 value somewhere, we can create a new object, with our new value:
+
+```{r}
+hum_diploid_chr_num <- hum_chr_num * 2
+```
+
+Lastly, we can even do math with multiple objects, such as follows:
+
+```{r}
+hum_diploid_chr_num / hum_chr_num
+```

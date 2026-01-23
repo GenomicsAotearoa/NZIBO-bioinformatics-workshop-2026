@@ -1,0 +1,8 @@
+---
+title: ""
+format: html
+---
+
+# Identify Differentially Expressed Genes
+
+In order to identify which genes are differentially expressed between two groups (in this case, we have 4 samples that are in the wild type group and 3 samples in the mutant group), when need to test if the two groups are significantly different from one another, which can be a challenging question to answer. We can start by specifically asking our question as a statistical question: Are the differences we observe between the two groups greater than the differences we would expect to see by chance?

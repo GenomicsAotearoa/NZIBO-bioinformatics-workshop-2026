@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NZIBO Bioinformatics</title>
+<title>digging-deeper – NZIBO Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro-to-R.html" rel="next">
-<link href="./test-styling.html" rel="prev">
+<link href="./degs.html" rel="next">
+<link href="./intro-to-rnaseq.html" rel="prev">
 <link href="./theme-images/GA-image-black-favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -75,7 +110,6 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="– NZIBO Bioinformatics">
 <meta property="og:description" content="">
-<meta property="og:image" content="theme-images/GA-Logo-BioinformaticsTraining-white.png">
 <meta property="og:site_name" content="NZIBO Bioinformatics">
 </head>
 
@@ -88,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./digging-deeper.html">Digging deeper</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -124,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -142,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./digging-deeper.html" class="sidebar-item-text sidebar-link">
+  <a href="./digging-deeper.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Digging deeper</span></a>
   </div>
 </li>
@@ -162,14 +196,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#nzibo-bioinformatics-workshop" id="toc-nzibo-bioinformatics-workshop" class="nav-link active" data-scroll-target="#nzibo-bioinformatics-workshop">NZIBO bioinformatics workshop</a>
+  <li><a href="#digging-deeper---further-exploring-the-data" id="toc-digging-deeper---further-exploring-the-data" class="nav-link active" data-scroll-target="#digging-deeper---further-exploring-the-data">Digging deeper - further exploring the data</a>
   <ul>
-  <li><a href="#getting-started-with-bioinformatics" id="toc-getting-started-with-bioinformatics" class="nav-link" data-scroll-target="#getting-started-with-bioinformatics">Getting started with bioinformatics</a></li>
-  <li><a href="#whats-covered-in-this-workshop" id="toc-whats-covered-in-this-workshop" class="nav-link" data-scroll-target="#whats-covered-in-this-workshop">What’s covered in this workshop</a></li>
-  <li><a href="#whats-not-covered-in-this-workshop" id="toc-whats-not-covered-in-this-workshop" class="nav-link" data-scroll-target="#whats-not-covered-in-this-workshop">What’s NOT covered in this workshop</a></li>
-  <li><a href="#timetable" id="toc-timetable" class="nav-link" data-scroll-target="#timetable">Timetable</a></li>
-  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link" data-scroll-target="#principal-component-analysis">Principal component analysis</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -180,41 +209,42 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="nzibo-bioinformatics-workshop" class="level1">
-<h1>NZIBO bioinformatics workshop</h1>
-<p>* insert picture here *</p>
-<section id="getting-started-with-bioinformatics" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started-with-bioinformatics">Getting started with bioinformatics</h2>
-<p>This workshop was designed for the NZIBO cohort to help get you started with bioinformatic skill sets and thinking. Bioinformatics is computational skills specifically for biologists, often skills needed to analyse genomic data sets (e.g., genomes, genes, transcriptomes, and many other kinds of data sets that revolve around the nucleic acids DNA and RNA!). Therefore there are many different tools you can use. A few programming langaues, such as bash and R, transcend any one particular topic and are used by almost alscientific disciplines to manipulate and investigate data.</p>
-</section>
-<section id="whats-covered-in-this-workshop" class="level2">
-<h2 class="anchored" data-anchor-id="whats-covered-in-this-workshop">What’s covered in this workshop</h2>
-<ul>
-<li>Introduction to the R programming language</li>
-<li>Introduction to gene expression using an RNA sequencing data set.</li>
-</ul>
-</section>
-<section id="whats-not-covered-in-this-workshop" class="level2">
-<h2 class="anchored" data-anchor-id="whats-not-covered-in-this-workshop">What’s NOT covered in this workshop</h2>
-<ul>
-<li>Using the shell</li>
-</ul>
-</section>
-<section id="timetable" class="level2">
-<h2 class="anchored" data-anchor-id="timetable">Timetable</h2>
-<p><strong>Monday 13th April, 2026</strong></p>
-</section>
-<section id="attribution" class="level2">
-<h2 class="anchored" data-anchor-id="attribution">Attribution</h2>
-<p>This workshop was developed by <a href="https://github.com/chloevdb">Dr Chloé van der Burg</a> for the bioinformatics teaching of the NZIBO 2026 cohort. Material was re-used from the <a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/">Genomics Aotearoa Bioinformatics Training Programme</a>, including the Introduction to R and RNAseq data analysis workflow.</p>
-</section>
-<section id="section" class="level2 no-underline-h2 ga-logo-block" style="background: #9E5600; text-align:center;">
-<h2 class="no-underline-h2 anchored" style="background: #9E5600; text-align:center;" data-anchor-id="section"></h2>
-<p><a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/"><img src="theme-images/GA-Logo-BioinformaticsTraining-white.png" class="img-fluid" style="width:80.0%"></a></p>
-<p>Made with <a href="https://docs.carpentries.org/policies/coc/">❤️</a> and <a href="https://genomicsaotearoa.github.io/reproducibility_with_git_and_quarto/quarto_overview.html">Quarto</a></p>
-</section>
+<section id="digging-deeper---further-exploring-the-data" class="level1">
+<h1>Digging deeper - further exploring the data</h1>
+<p>We have 4 different treatments and 4 different cell strains, and we want to explore how each of these could contribute to the overall gene expression profile of the sample.</p>
+<section id="principal-component-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="principal-component-analysis">Principal component analysis</h2>
+<p>A way to visualise sample-to-sample distances is a principal-components analysis (PCA). In this ordination method, the data points (i.e., here, the samples) are projected onto the 2D plane such that they spread out in the two directions which explain most of the differences in the data. The x-axis is the direction (or principal component) which separates the data points the most. The amount of the total variance which is contained in the direction is printed in the axis label.</p>
+<p>* <strong>to get the follwwoign to work might need to read out an object and read it back in all in the backgrond echo false. etc</strong> *</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"DESeq2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We will use DEseq to to generate a special type of object in R. Will use later for DEGs,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>countdata_fordds <span class="ot">&lt;-</span> countdata_nozeros <span class="sc">%&gt;%</span> <span class="co">#first need to make gene id a rowname rather than its own columns. </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"GeneID"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> countdata_fordds, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> coldata,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span> cell <span class="sc">+</span> dex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>counts(dds) %&gt;% head()</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>vsd <span class="ot">&lt;-</span>  <span class="fu">vst</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vsd, <span class="at">intgroup =</span> <span class="fu">c</span>(<span class="st">"dex"</span>, <span class="st">"cell"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -619,13 +649,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="./test-styling.html" class="pagination-link" aria-label="_test styles">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">_test styles</span>
+      <a href="./intro-to-rnaseq.html" class="pagination-link" aria-label="Introduction to RNAseq">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction to RNAseq</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro-to-R.html" class="pagination-link" aria-label="Introduction to the R programming language">
-        <span class="nav-page-text">Introduction to the R programming language</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./degs.html" class="pagination-link" aria-label="Identify Differentially Expressed Genes">
+        <span class="nav-page-text">Identify Differentially Expressed Genes</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

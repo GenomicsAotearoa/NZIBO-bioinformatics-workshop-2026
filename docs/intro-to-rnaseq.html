@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,6 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./digging-deeper.html" rel="next">
 <link href="./intro-to-R.html" rel="prev">
 <link href="./theme-images/GA-image-black-favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -74,6 +110,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="– NZIBO Bioinformatics">
 <meta property="og:description" content="">
+<meta property="og:image" content="figures/rstudio-data-objects.png">
 <meta property="og:site_name" content="NZIBO Bioinformatics">
 </head>
 
@@ -138,6 +175,18 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Introduction to RNAseq</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./digging-deeper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Digging deeper</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./degs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Identify Differentially Expressed Genes</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -154,7 +203,12 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion 🧐</a></li>
   </ul></li>
-  <li><a href="#exploring-our-data" id="toc-exploring-our-data" class="nav-link" data-scroll-target="#exploring-our-data">Exploring our data</a></li>
+  <li><a href="#exploring-our-data" id="toc-exploring-our-data" class="nav-link" data-scroll-target="#exploring-our-data">Exploring our data</a>
+  <ul class="collapse">
+  <li><a href="#count-data" id="toc-count-data" class="nav-link" data-scroll-target="#count-data">Count data</a></li>
+  <li><a href="#col-data" id="toc-col-data" class="nav-link" data-scroll-target="#col-data">Col data</a></li>
+  </ul></li>
+  <li><a href="#visualising-our-dataset" id="toc-visualising-our-dataset" class="nav-link" data-scroll-target="#visualising-our-dataset">Visualising our dataset</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -205,6 +259,198 @@ SOLUTIONS
 <h2 class="anchored" data-anchor-id="exploring-our-data">Exploring our data</h2>
 <p>We have prepared some files for you, which are in an open repository online.</p>
 <p>Let’s load them in to our RStudio and orientate ourselves to the data.</p>
+<p>We’ll first load in some metadata about our RNA-seq experiment from a csv file or “comma-separated values”, which is a common way to save data from excel in a programming language friendly way.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>coldata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/coldata.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(coldata) <span class="co"># this head function shows the first 6 lines of an object. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Sample SampleName    cell   dex albut        Run avgLength Experiment
+1 SRR1039508 GSM1275862  N61311 untrt untrt SRR1039508       126  SRX384345
+2 SRR1039509 GSM1275863  N61311   trt untrt SRR1039509       126  SRX384346
+3 SRR1039512 GSM1275866 N052611 untrt untrt SRR1039512       126  SRX384349
+4 SRR1039513 GSM1275867 N052611   trt untrt SRR1039513        87  SRX384350
+5 SRR1039516 GSM1275870 N080611 untrt untrt SRR1039516       120  SRX384353
+6 SRR1039517 GSM1275871 N080611   trt untrt SRR1039517       126  SRX384354</code></pre>
+</div>
+</div>
+<p>This coldata object we have made is called a <em>dataframe</em> which is like the R version of a table or spreadsheet in excel.</p>
+<p>You can confirm this using the function <code>class()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(coldata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.frame"</code></pre>
+</div>
+</div>
+<p>Next let’s load in some count data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>countdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/count.data.csv"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(countdata) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           GeneID SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516
+1 ENSG00000000003        679        448        873        408       1138
+2 ENSG00000000005          0          0          0          0          0
+3 ENSG00000000419        467        515        621        365        587
+4 ENSG00000000457        260        211        263        164        245
+5 ENSG00000000460         60         55         40         35         78
+6 ENSG00000000938          0          0          2          0          1
+  SRR1039517 SRR1039520 SRR1039521
+1       1047        770        572
+2          0          0          0
+3        799        417        508
+4        331        233        229
+5         63         76         60
+6          0          0          0</code></pre>
+</div>
+</div>
+<p>Look at the environment panel. How many rows and columns are there for the coldata and countdata objects? (Observations = rows. Variables = columns.)</p>
+<p><img src="figures/rstudio-data-objects.png" class="img-fluid"></p>
+<p>There are over 60,000 rows for count data! This is common when working with genetic datasets to have a lot of rows. Hence, its alwaysa good idead to use the <code>head()</code> function to look at these dataframes, as they are too big to view otherwise.</p>
+<p>In saying that, RStudio has a very nice viewing feature for dataframes. Click on the object name in the environment to open the table viewer.</p>
+<p>These two objects are all we need to start exploring gene expression.</p>
+<section id="count-data" class="level3">
+<h3 class="anchored" data-anchor-id="count-data">Count data</h3>
+<p>The countdata is our raw gene expression data. Here is an annotated snapshot of the dataframe:</p>
+<p><img src="figures/count-data.png" class="img-fluid"></p>
+<ul>
+<li><p>In the first column are our <strong>genes</strong>. Genes have a descriptive gene name, but they can also be represented by a few different IDs, depending on which database they are held in or how the genome was annotated. Often you will need to cross reference IDs to find the one you want to use. For example, here are the full names for three genes: <em>actin beta</em>, <em>homeobox A1</em> and <em>Sex-determining region Y</em>, which can be represented by their gene symbols <em>actb</em>, <em>HOXA1</em> and <em>SRY</em>, and also represented by the following ensembl IDs: ENSG00000075624, ENSG00000105991, ENSG00000184895.</p></li>
+<li><p>The column names are our <strong>samples</strong>. These can have any name the researcher decides to use. These particular samples were downloaded from the Sequence Read Archive (SRA), which is a database many researchers use to store their data for sharing upon publication of their study. Hence here the sample names are IDs designated by the SRA – we can use the metadata to find out more info about these samples.</p></li>
+<li><p>The numeric values in the table are the <strong>counts</strong>. This is the unprocessed, raw expression data for our genes. A single count corresponds to 1 sequence read mapping to that gene in the genome during a process called alignment. This is the initial step in RNA-seq, where the sequence read data are first ‘aligned’ to the genome using high performance computing. These counts are one of the main outputs from this process and what most researchers then go on to use for all downstream analyses.</p></li>
+</ul>
+</section>
+<section id="col-data" class="level3">
+<h3 class="anchored" data-anchor-id="col-data">Col data</h3>
+<p>Short for column data, this is all our metadata, or information, about our samples and experiment.</p>
+<p>Here is a screenshot showing the whole coldata table:</p>
+<p><img src="figures/col-data.png" class="img-fluid"></p>
+<ul>
+<li>The first column shows our <strong>‘Sample’</strong>, which you can see match the column names in our countdata.</li>
+<li>The columns <strong>‘SampleName’</strong>, <strong>‘Run’</strong> and <strong>‘Experiment’</strong> all also show different IDs that match information in databases. We won’t need to use any of these today. We also don’t need the <strong>‘avgLength’</strong> column today.<br>
+</li>
+<li>The third column <strong>‘Cell’</strong> tells us the ID of the cell line – this is some data we might need to use later.<br>
+</li>
+<li>The fourth column <strong>‘dex’</strong> tells us if the samples were treated or untreated with dexamethasone – also some useful information we’ll need. Compare the values to the <strong>‘Cell’</strong> column, does it tell you something important about the experimental design?<br>
+</li>
+<li>The fifth column <strong>‘albut’</strong> indicates all samples were untreated. What do you think this means?</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solutions:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>We can see that there are four unique cell lines used in this experiment, and for each cell line, there was one untreated and one dexamethasone treated sample. This is an important part of robust experimental design – each cell line could respond differently so you need to control for this by testing every condition on all cell lines.</p></li>
+<li><p>We can guess based on context that <strong>‘albut’</strong> is probably another drug, and here all samples are untreated. If you read the paper (citation earlier), you will see they mention the drug albuterol, which has previously been used in studies to test cell responses, and a quick google search will tell you it is a commonly prescribed drug for asthma.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="visualising-our-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="visualising-our-dataset">Visualising our dataset</h2>
+<p>The first steps in exploratory analysis of gene expression is playing around with visualising the data. You are attempting to get a sense of what the data looks like, to notice outliers or issues (e.g., hey isn’t it weird that one of my untreated samples groups with all the treated samples? I wonder what’s happening there?).</p>
+<p>If your data set was a physical problem (like a squeaky wheel or a well wrapped present) you’d physically explore it (pick it up, is it heavy, do I shake it?). Exploratory analysis is the data science equivalent.</p>
+<p>The first to help with our future data analysis, is to rename the column names for the samples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(countdata)[<span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"S1-Un"</span>, <span class="st">"S2-Tr"</span>,<span class="st">"S3-Un"</span>, <span class="st">"S4-Tr"</span>,<span class="st">"S5-Un"</span>, <span class="st">"S6-Tr"</span>,<span class="st">"S7-Un"</span>, <span class="st">"S8-Tr"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(countdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           GeneID S1-Un S2-Tr S3-Un S4-Tr S5-Un S6-Tr S7-Un S8-Tr
+1 ENSG00000000003   679   448   873   408  1138  1047   770   572
+2 ENSG00000000005     0     0     0     0     0     0     0     0
+3 ENSG00000000419   467   515   621   365   587   799   417   508
+4 ENSG00000000457   260   211   263   164   245   331   233   229
+5 ENSG00000000460    60    55    40    35    78    63    76    60
+6 ENSG00000000938     0     0     2     0     1     0     0     0</code></pre>
+</div>
+</div>
+<p>The next thing we will do is create some boxplots. There is a great function in R called <code>ggplot()</code> that we will use. <code>ggplot</code> comes from a package called tidyverse that you will need to install by running this code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, we need to load the package into our RStudio using the function <code>library()</code>. You only need to install a package once (well, until there are new updates to install), but every time you start up your RStudio you’ll need to run <code>library()</code> again. It’s a bit like if the software was a book, and your computer is your bookshelf. Once you install the software or ‘book’, it’s sitting on your computer or ‘bookshelf’. But if you want to use the software (read the book), you need to go to the bookshelf, pick up the book and open it – i.e., run the code <code>library()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.2
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>First we will convert the counts to a ‘long’ format. Don’t worry too much about how this code is working. What is happening is we are making a new dataframe caled counts_long, which are in a format that ggplot prefers. The data itself has not changed, it has simply re-arranged.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert counts data to long format for ggplot</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>counts_long <span class="ot">&lt;-</span> countdata <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>GeneID, <span class="at">names_to =</span> <span class="st">"Sample"</span>, <span class="at">values_to =</span> <span class="st">"Counts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can make a boxplot using ggplot. Again don’t worry too much about how this code is working, but we’ll explain it a little. ggplot graphics are built step-by-step by adding new elements with the “+” symbol. Adding layers in this fashion allows for extensive flexibility and customisation of plots, and more equally important the readability of the code. The first line of code is important - the object with the data is specified first, then the x and y aesthetics are mapped. Each line after the first builds up the plot in layers, and the next important line of code is the geom. There are many many geoms, corresponding to any plot or graph you can think of. Here we will use a boxplot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create boxplot with ggplot2</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts_long, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sample, <span class="at">y =</span> Counts)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Samples"</span>, <span class="at">y =</span> <span class="st">"Counts"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="intro-to-rnaseq_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What do you think of these boxplots? What are they telling you?</p>
+<p>This figure indicates there are a lot of zero counts in our dataset. This is because when the countdata is generated, all of the organism’s genes are listed in the output, even if no reads map to them. Further, the figure shows quite a big distribution of counts, from 10s to 100,000s. This indicates we may need to log the counts for visualisation purposes.</p>
+<p>We should first remove all genes that have an expression of zero, in every sample.</p>
+<p>We can check how many genes in each samples have counts of zero as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(countdata <span class="sc">==</span> <span class="dv">0</span>) <span class="co"># adds up how many zeros are in each column </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GeneID  S1-Un  S2-Tr  S3-Un  S4-Tr  S5-Un  S6-Tr  S7-Un  S8-Tr 
+     0  39044  39150  37978  40553  38169  37679  39015  39686 </code></pre>
+</div>
+</div>
+<p>Let’s remove them from our countdata using some code, which uses some neat tidyverse functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>countdata_nozeros <span class="ot">&lt;-</span> countdata <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="sc">-</span>GeneID)) <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then remake our long counts format, make a new column with the logged counts and replot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>counts_long <span class="ot">&lt;-</span> countdata_nozeros <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>GeneID, <span class="at">names_to =</span> <span class="st">"Sample"</span>, <span class="at">values_to =</span> <span class="st">"Counts"</span>) </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>counts_long <span class="ot">&lt;-</span> counts_long <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">logCounts =</span> <span class="fu">log2</span>(Counts <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts_long, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sample, <span class="at">y =</span> logCounts)) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Samples"</span>, <span class="at">y =</span> <span class="st">"Logged counts"</span>) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="intro-to-rnaseq_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now that looks more like real boxplots. What are the plots telling you now?</p>
+<p>At first glance, we can see there are still quite a few zero counts. This is normal – before we removed only genes where there is a zero count in every sample. Some genes are very lowly expressed – they have a count of zero in most samples, but not all, and were therefore not removed.</p>
+<p>The next thing we can see is that there is no obvious difference in expression levels of untreated vs treated samples. Often gene expression is more subtle than this – we’ll have to dig deeper!</p>
 
 
 </section>
@@ -617,6 +863,9 @@ SOLUTIONS
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./digging-deeper.html" class="pagination-link" aria-label="Digging deeper">
+        <span class="nav-page-text">Digging deeper</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

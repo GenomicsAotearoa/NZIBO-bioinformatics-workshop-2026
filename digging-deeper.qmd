@@ -1,0 +1,62 @@
+---
+title: ""
+format: html
+---
+
+# Digging deeper - further exploring the data 
+
+We have 4 different treatments and 4 different cell strains, and we want to explore how each of these could contribute to the overall gene expression profile of the sample. 
+
+## Principal component analysis
+
+A way to visualise sample-to-sample distances is a principal-components analysis (PCA). In this ordination method, the data points (i.e., here, the samples) are projected onto the 2D plane such that they spread out in the two directions which explain most of the differences in the data. The x-axis is the direction (or principal component) which separates the data points the most. The amount of the total variance which is contained in the direction is printed in the axis label.
+
+
+\* **to get the follwwoign to work might need to read out an object and read it back in all in the backgrond echo false. etc** \*
+
+```{r}
+#| eval: false
+
+install.packages("DESeq2")
+```
+
+```{r}
+#| message: false
+
+library(DESeq2)
+library(tidyverse)
+```
+
+We will use DEseq to to generate a special type of object in R. Will use later for DEGs, 
+
+```{r}
+#| eval: false
+
+countdata_fordds <- countdata_nozeros %>% #first need to make gene id a rowname rather than its own columns. 
+  column_to_rownames("GeneID")
+
+dds <- DESeqDataSetFromMatrix(countData = countdata_fordds, 
+                              colData = coldata,
+                              design = ~ cell + dex)
+```
+
+counts(dds) %>% head()
+
+
+```{r}
+#| eval: false
+
+dds <- DESeq(dds)
+```
+
+```{r}
+#| eval: false
+
+vsd <-  vst(dds)
+```
+
+```{r}
+#| eval: false
+
+plotPCA(vsd, intgroup = c("dex", "cell"))
+```

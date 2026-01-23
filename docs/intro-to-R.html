@@ -174,6 +174,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Introduction to RNAseq</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./digging-deeper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Digging deeper</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./degs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Identify Differentially Expressed Genes</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -196,6 +208,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#getting-help-with-function-arguments" id="toc-getting-help-with-function-arguments" class="nav-link" data-scroll-target="#getting-help-with-function-arguments">Getting help with function arguments</a></li>
   <li><a href="#libraries-packages-functions" id="toc-libraries-packages-functions" class="nav-link" data-scroll-target="#libraries-packages-functions">Libraries, packages, functions</a></li>
   <li><a href="#rstudio-contextual-help" id="toc-rstudio-contextual-help" class="nav-link" data-scroll-target="#rstudio-contextual-help">RStudio contextual help</a></li>
+  <li><a href="#important-r-things-to-know" id="toc-important-r-things-to-know" class="nav-link" data-scroll-target="#important-r-things-to-know">Important R things to know</a>
+  <ul class="collapse">
+  <li><a href="#objects-and-assignment" id="toc-objects-and-assignment" class="nav-link" data-scroll-target="#objects-and-assignment"><strong>Objects</strong> and <strong>assignment</strong></a></li>
+  <li><a href="#mathematical-operations" id="toc-mathematical-operations" class="nav-link" data-scroll-target="#mathematical-operations">Mathematical operations</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -461,8 +478,90 @@ Solution
 <p>You can see that the “linear model” function <code>lm()</code> comes from a package called <code>{stats}</code>, which like <code>{base}</code> also comes by default with R.</p>
 <p>Once you type a function, hitting the <kbd>Tab</kbd> inside the parentheses will show you the function’s arguments and provide additional help for each of these arguments.</p>
 <p><img src="figures/studio_contexthelp2.png" class="img-fluid"></p>
+</section>
+<section id="important-r-things-to-know" class="level2">
+<h2 class="anchored" data-anchor-id="important-r-things-to-know">Important R things to know</h2>
+<p>We don’t have time to learn everything there is to know about R – in fact, people who have been using R for 20+ years still learn new things all the time! But, there a couple of key things about how R works that you should know now before we move on to the next section. We’ll be learning more R things a long the way as we learn gene expression.</p>
+<section id="objects-and-assignment" class="level4">
+<h4 class="anchored" data-anchor-id="objects-and-assignment"><strong>Objects</strong> and <strong>assignment</strong></h4>
+<p>To work with data in R we need to make <strong>objects</strong>, which we <strong>assign</strong> a value.</p>
+<p><strong>To create an object, you need:</strong></p>
+<ul>
+<li>A name (e.g.&nbsp;<code>a</code>)</li>
+<li>A value (e.g.&nbsp;<code>1</code>)</li>
+<li>The assignment operator (<code>&lt;-</code>)</li>
+</ul>
+<p>In your script, use the R assignment operator <code>&lt;-</code> to assign <code>1</code> to the object <code>a</code> as shown. Remember to leave a comment in the line above (using the <code>#</code>) to explain what you are doing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This line creates the object 'a' and assigns it the value '1'</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, run this line of code in your script. You can run a line of code by hitting the <code>Run</code> button that is above the first line of your script in the header of the ‘Source’ pane or you can use the appropriate shortcut:</p>
+<ul>
+<li>Windows execution shortcut: <kbd>Ctrl</kbd> + <kbd>Enter</kbd></li>
+<li>Mac execution shortcut: <kbd>Cmd(⌘)</kbd> + <kbd>Enter</kbd></li>
+</ul>
+<p>To run multiple lines of code, highlight all the line you wish to run and then hit Run or use the shortcut key combo listed above. In the RStudio ‘Console’, you should see:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The ‘Console’ will display lines of code run from a script and any outputs orstatus/warning/error messages (usually in red). The <code>&gt;</code> indicates R is waiting for an instruction again from you. Often when your code works, there will be no obvious output. If it didn’t you will usually get an error message.</p>
+<p>In the ‘Environment’ window you will also get a table:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Values</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The ‘Environment’ window allows you to keep track of the objects you have created in R.</p>
+</section>
+<section id="mathematical-operations" class="level4">
+<h4 class="anchored" data-anchor-id="mathematical-operations">Mathematical operations</h4>
+<p>R was originally designed for statistics and as such is a very powerful calculator. Most of the usual mathematical operators work as you may expect. Let’s try a few.</p>
+<p>Pure math works in R with literal numbers, for example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">+</span> (<span class="dv">5</span> <span class="sc">**</span> <span class="fl">0.5</span>)) <span class="sc">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.618034</code></pre>
+</div>
+</div>
+<p>The <code>**</code> operator is a way to write “to the power of”. Other operators such as subtract <code>-</code> and multiply <code>*</code> all work too.</p>
+<p>Next, let’s do some maths with objects. Much like algebra, objects can be part of mathematical equations. Create an object that has the value of number of pairs of human chromosomes as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>hum_chr_num <span class="ot">&lt;-</span> <span class="dv">23</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, see what happens if you want to find the number of chromosomes in a diploid human cell. You can times the object by 2 to get the result:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hum_chr_num <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 46</code></pre>
+</div>
+</div>
+<p>Note that this output 46 is not stored anywhere, and the object <code>hum_chr_num</code> is not changed in any way. The only way to save or change an object is to <strong>assign</strong> a new value to it.</p>
+<p>If we wanted to store the 46 value somewhere, we can create a new object, with our new value:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>hum_diploid_chr_num <span class="ot">&lt;-</span> hum_chr_num <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lastly, we can even do math with multiple objects, such as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>hum_diploid_chr_num <span class="sc">/</span> hum_chr_num</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
 
 
+</section>
 </section>
 </section>
 
