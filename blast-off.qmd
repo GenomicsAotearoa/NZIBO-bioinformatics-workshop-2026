@@ -1,0 +1,15 @@
+---
+title: ""
+format: html
+---
+
+# Basic Local Alignment Search Tool (BLAST)
+
+
+Take a few genes of interest and live blast them to see stuff 
+
+sequence alignment impotant skill
+idnetify intor exon also important
+
+
+

@@ -24,12 +24,14 @@ website:
         href: digging-deeper.qmd
       - text: "Identify Differentially Expressed Genes"
         href: degs.qmd
+      - text: "BLAST genes of interest"
+        href: blast-off.qmd
 
     
     tools:
       - icon: github
         text: Github
-        href: https://github.com/GenomicsAotearoa/
+        href: https://github.com/GenomicsAotearoa/NZIBO-bioinformatics-workshop-2026
 
 
 format:

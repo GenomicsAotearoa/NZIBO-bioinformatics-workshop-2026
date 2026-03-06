@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="./">NZIBO Bioinformatics</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/GenomicsAotearoa/" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/GenomicsAotearoa/NZIBO-bioinformatics-workshop-2026" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -186,6 +186,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Identify Differentially Expressed Genes</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./blast-off.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BLAST genes of interest</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -205,7 +211,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#creating-your-first-r-script" id="toc-creating-your-first-r-script" class="nav-link" data-scroll-target="#creating-your-first-r-script">Creating your first R script</a></li>
   <li><a href="#getting-to-work-with-r-navigating-directories" id="toc-getting-to-work-with-r-navigating-directories" class="nav-link" data-scroll-target="#getting-to-work-with-r-navigating-directories">Getting to work with R: Navigating directories</a></li>
   <li><a href="#using-functions-in-r-without-needing-to-master-them" id="toc-using-functions-in-r-without-needing-to-master-them" class="nav-link" data-scroll-target="#using-functions-in-r-without-needing-to-master-them">Using functions in R, without needing to master them</a></li>
-  <li><a href="#getting-help-with-function-arguments" id="toc-getting-help-with-function-arguments" class="nav-link" data-scroll-target="#getting-help-with-function-arguments">Getting help with function arguments</a></li>
   <li><a href="#libraries-packages-functions" id="toc-libraries-packages-functions" class="nav-link" data-scroll-target="#libraries-packages-functions">Libraries, packages, functions</a></li>
   <li><a href="#rstudio-contextual-help" id="toc-rstudio-contextual-help" class="nav-link" data-scroll-target="#rstudio-contextual-help">RStudio contextual help</a></li>
   <li><a href="#important-r-things-to-know" id="toc-important-r-things-to-know" class="nav-link" data-scroll-target="#important-r-things-to-know">Important R things to know</a>
@@ -268,15 +273,13 @@ Objectives
 </li>
 <li>Compose an R script file containing comments and commands<br>
 </li>
-<li>Understand what an R function is<br>
-</li>
-<li>Locate help for an R function using <code>?</code>, <code>??</code>, and <code>args()</code></li>
+<li>Understand what an R function is</li>
 </ul>
 </div>
 </div>
 <section id="a-brief-history-of-r" class="level2">
 <h2 class="anchored" data-anchor-id="a-brief-history-of-r">A Brief History of R</h2>
-<p><a href="https://en.wikipedia.org/wiki/R_(programming_language)">R</a> has been around since 1995, and was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand. R is based off the <a href="https://en.wikipedia.org/wiki/S_(programming_language)">S programming language</a> developed at Bell Labs and was developed to teach introductory statistics. See this <a href="https://www.stat.auckland.ac.nz/~ihaka/downloads/Massey.pdf">slide deck</a>by Ross Ihaka for more info on the subject.</p>
+<p><a href="https://en.wikipedia.org/wiki/R_(programming_language)">R</a> has been around since 1995, and was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand. R is based off the <a href="https://en.wikipedia.org/wiki/S_(programming_language)">S programming language</a> developed at Bell Labs and was developed to teach introductory statistics. See this <a href="https://www.stat.auckland.ac.nz/~ihaka/downloads/Massey.pdf">slide deck</a> by Ross Ihaka for more info on the subject.</p>
 </section>
 <section id="advantages-of-using-r" class="level2">
 <h2 class="anchored" data-anchor-id="advantages-of-using-r">Advantages of using R</h2>
@@ -323,6 +326,8 @@ Extra for experts - RStudio Projects
 <ul>
 <li>Save data, files, variables, packages, etc. related to a specific analysis project<br>
 </li>
+<li>Use relative paths in your scripts, making your project more easily portable to other computers<br>
+</li>
 <li>Restart work where you left off<br>
 </li>
 <li>Collaborate, especially if you are using version control such as <a href="http://swcarpentry.github.io/git-novice/">git</a></li>
@@ -358,7 +363,7 @@ Extra for experts - RStudio Projects
 </section>
 <section id="getting-to-work-with-r-navigating-directories" class="level2">
 <h2 class="anchored" data-anchor-id="getting-to-work-with-r-navigating-directories">Getting to work with R: Navigating directories</h2>
-<p>Now that we have covered the more aesthetic aspects of RStudio, we can get to work using some commands. We will write, execute, and save the commands we learn in our <code>genomics_r_basics.R</code> script that is loaded in the Source pane. First, lets see what directory we are in. To do so, type the following command into the script:</p>
+<p>Now that we have covered the more aesthetic aspects of RStudio, we can get to work using some commands. We will write, execute, and save the commands we learn in our <code>bioinformatics-day.R</code> script that is loaded in the Source pane. First, lets see what directory we are in. To do so, type the following command into the script:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -447,21 +452,6 @@ Solution
 </div>
 </div>
 </section>
-<section id="getting-help-with-function-arguments" class="level2">
-<h2 class="anchored" data-anchor-id="getting-help-with-function-arguments">Getting help with function arguments</h2>
-<p>What if you wanted to round to one significant digit? <code>round()</code> can do this, but you may first need to read the help to find out how. To see the help (in R sometimes also called a “vignette”) enter a <code>?</code> in front of the function name:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">round</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The “Help” tab will show you information (often, too much information). You will slowly learn how to read and make sense of help files. Checking the “Usage” or “Examples” headings is often a good place to look first. If you look under “Arguments,” we also see what arguments we can pass to this function to modify its behavior.</p>
-<p><code>round()</code> takes two arguments, <code>x</code>, which is the number to be rounded, and a <code>digits</code> argument. The <code>=</code> sign indicates that a default (in this case 0) is already set. Since <code>x</code> is not set, <code>round()</code> requires we provide it, in contrast to <code>digits</code> where R will use the default value 0 unless you explicitly provide a different value. We can explicitly set the digits argument when we call the function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.14</code></pre>
-</div>
-</div>
-</section>
 <section id="libraries-packages-functions" class="level2">
 <h2 class="anchored" data-anchor-id="libraries-packages-functions">Libraries, packages, functions</h2>
 <p>Functions, like the two we have just used <code>getwd()</code> and <code>round()</code>, come from packages, which you can download to your computer then load into R as a library. Some packages are automatically installed as part of base R when you download R and Rstudio – the two functions above are examples that come from <code>{base}</code>. As we go along today we will discuss more on where to look for the libraries and packages that contain functions you want to use. For now, be aware that two important ones are:</p>
@@ -493,9 +483,9 @@ Solution
 </ul>
 <p>In your script, use the R assignment operator <code>&lt;-</code> to assign <code>1</code> to the object <code>a</code> as shown. Remember to leave a comment in the line above (using the <code>#</code>) to explain what you are doing:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This line creates the object 'a' and assigns it the value '1'</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This line creates the object 'a' and assigns it the value '1'</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, run this line of code in your script. You can run a line of code by hitting the <code>Run</code> button that is above the first line of your script in the header of the ‘Source’ pane or you can use the appropriate shortcut:</p>
 <ul>
@@ -504,8 +494,8 @@ Solution
 </ul>
 <p>To run multiple lines of code, highlight all the line you wish to run and then hit Run or use the shortcut key combo listed above. In the RStudio ‘Console’, you should see:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The ‘Console’ will display lines of code run from a script and any outputs orstatus/warning/error messages (usually in red). The <code>&gt;</code> indicates R is waiting for an instruction again from you. Often when your code works, there will be no obvious output. If it didn’t you will usually get an error message.</p>
 <p>In the ‘Environment’ window you will also get a table:</p>
@@ -530,7 +520,7 @@ Solution
 <p>R was originally designed for statistics and as such is a very powerful calculator. Most of the usual mathematical operators work as you may expect. Let’s try a few.</p>
 <p>Pure math works in R with literal numbers, for example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">+</span> (<span class="dv">5</span> <span class="sc">**</span> <span class="fl">0.5</span>)) <span class="sc">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">+</span> (<span class="dv">5</span> <span class="sc">**</span> <span class="fl">0.5</span>)) <span class="sc">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.618034</code></pre>
 </div>
@@ -538,11 +528,11 @@ Solution
 <p>The <code>**</code> operator is a way to write “to the power of”. Other operators such as subtract <code>-</code> and multiply <code>*</code> all work too.</p>
 <p>Next, let’s do some maths with objects. Much like algebra, objects can be part of mathematical equations. Create an object that has the value of number of pairs of human chromosomes as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>hum_chr_num <span class="ot">&lt;-</span> <span class="dv">23</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>hum_chr_num <span class="ot">&lt;-</span> <span class="dv">23</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, see what happens if you want to find the number of chromosomes in a diploid human cell. You can times the object by 2 to get the result:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hum_chr_num <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>hum_chr_num <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 46</code></pre>
 </div>
@@ -550,11 +540,11 @@ Solution
 <p>Note that this output 46 is not stored anywhere, and the object <code>hum_chr_num</code> is not changed in any way. The only way to save or change an object is to <strong>assign</strong> a new value to it.</p>
 <p>If we wanted to store the 46 value somewhere, we can create a new object, with our new value:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>hum_diploid_chr_num <span class="ot">&lt;-</span> hum_chr_num <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>hum_diploid_chr_num <span class="ot">&lt;-</span> hum_chr_num <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lastly, we can even do math with multiple objects, such as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>hum_diploid_chr_num <span class="sc">/</span> hum_chr_num</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hum_diploid_chr_num <span class="sc">/</span> hum_chr_num</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>

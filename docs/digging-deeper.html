@@ -110,6 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="– NZIBO Bioinformatics">
 <meta property="og:description" content="">
+<meta property="og:image" content="digging-deeper_files/figure-html/unnamed-chunk-8-1.png">
 <meta property="og:site_name" content="NZIBO Bioinformatics">
 </head>
 
@@ -139,7 +140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="./">NZIBO Bioinformatics</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/GenomicsAotearoa/" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/GenomicsAotearoa/NZIBO-bioinformatics-workshop-2026" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -186,6 +187,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Identify Differentially Expressed Genes</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./blast-off.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BLAST genes of interest</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -196,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#digging-deeper---further-exploring-the-data" id="toc-digging-deeper---further-exploring-the-data" class="nav-link active" data-scroll-target="#digging-deeper---further-exploring-the-data">Digging deeper - further exploring the data</a>
+  <li><a href="#digging-deeper" id="toc-digging-deeper" class="nav-link active" data-scroll-target="#digging-deeper">Digging deeper</a>
   <ul>
   <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link" data-scroll-target="#principal-component-analysis">Principal component analysis</a></li>
   </ul></li>
@@ -209,13 +216,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="digging-deeper---further-exploring-the-data" class="level1">
-<h1>Digging deeper - further exploring the data</h1>
-<p>We have 4 different treatments and 4 different cell strains, and we want to explore how each of these could contribute to the overall gene expression profile of the sample.</p>
+<section id="digging-deeper" class="level1">
+<h1>Digging deeper</h1>
+<p>We have 2 different conditions (treated with dexamethasone vs untreated control) and 4 different cell strains, and we want to explore how each of these could contribute to the overall gene expression profile of the sample.</p>
 <section id="principal-component-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="principal-component-analysis">Principal component analysis</h2>
 <p>A way to visualise sample-to-sample distances is a principal-components analysis (PCA). In this ordination method, the data points (i.e., here, the samples) are projected onto the 2D plane such that they spread out in the two directions which explain most of the differences in the data. The x-axis is the direction (or principal component) which separates the data points the most. The amount of the total variance which is contained in the direction is printed in the axis label.</p>
-<p>* <strong>to get the follwwoign to work might need to read out an object and read it back in all in the backgrond echo false. etc</strong> *</p>
+<p>In simple turns, we are making a plot that shows us how similar or different each sample, taking in to account all of the gene expression. A PCA plot can help us see the biggest sources of biological variation and help determine which has more of an affect on the gene expression – whether that be the treatment type, the cell type or something else.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"DESeq2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -223,25 +230,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We will use DEseq to to generate a special type of object in R. Will use later for DEGs,</p>
+<p>We will use DEseq to to generate a special type of object in R, which will be called dds. This object can hold a lot of complex data types all in one. We will use it later for differential gene expression.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>countdata_fordds <span class="ot">&lt;-</span> countdata_nozeros <span class="sc">%&gt;%</span> <span class="co">#first need to make gene id a rowname rather than its own columns. </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"GeneID"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> countdata_fordds, </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> coldata,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span> cell <span class="sc">+</span> dex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first need to make gene ID a rowname rather than its own columns. </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>countdata_fordds <span class="ot">&lt;-</span> countdata_nozeros <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"GeneID"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># now make the special deseq object, loading in counts and metadata and choosing the design</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> countdata_fordds, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> coldata,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span> cell <span class="sc">+</span> dex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in DESeqDataSet(se, design = design, ignoreRank): some variables in
+design formula are characters, converting to factors</code></pre>
 </div>
-<p>counts(dds) %&gt;% head()</p>
+</div>
+<p>We can use the <code>head()</code> function to have a look at the counts in dds</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">counts</span>(dds))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                S1-Un S2-Tr S3-Un S4-Tr S5-Un S6-Tr S7-Un S8-Tr
+ENSG00000000003   679   448   873   408  1138  1047   770   572
+ENSG00000000419   467   515   621   365   587   799   417   508
+ENSG00000000457   260   211   263   164   245   331   233   229
+ENSG00000000460    60    55    40    35    78    63    76    60
+ENSG00000000938     0     0     2     0     1     0     0     0
+ENSG00000000971  3251  3679  6177  4252  6721 11027  5176  7995</code></pre>
 </div>
+</div>
+<p>These are still the same as our original count data, we can check that by also running head on ‘countdata_fordds’ too.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>vsd <span class="ot">&lt;-</span>  <span class="fu">vst</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(countdata_fordds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                S1-Un S2-Tr S3-Un S4-Tr S5-Un S6-Tr S7-Un S8-Tr
+ENSG00000000003   679   448   873   408  1138  1047   770   572
+ENSG00000000419   467   515   621   365   587   799   417   508
+ENSG00000000457   260   211   263   164   245   331   233   229
+ENSG00000000460    60    55    40    35    78    63    76    60
+ENSG00000000938     0     0     2     0     1     0     0     0
+ENSG00000000971  3251  3679  6177  4252  6721 11027  5176  7995</code></pre>
 </div>
+</div>
+<p>The creation of our dds “DESeqDataSeq” object earlier did not actually do anything yet to the data, it essentially loaded in and prepped it for further analysis.</p>
+<p>As the counts in dds are raw counts, we need to first transform the counts for visualisation. We will use a function called <code>vst()</code> or variance stabilising transformation. This is a common type of transformation to use for visualising RNAseq data. We will make it in a new object called vsd, which will be a “DESeqTransform” object.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vsd, <span class="at">intgroup =</span> <span class="fu">c</span>(<span class="st">"dex"</span>, <span class="st">"cell"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>vsd <span class="ot">&lt;-</span>  <span class="fu">vst</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Now we can make our PCA plot, using an all-in-one plotting function called <code>plotPCA()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vsd, <span class="at">intgroup =</span> <span class="fu">c</span>(<span class="st">"dex"</span>, <span class="st">"cell"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="digging-deeper_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+If the pca code above doesn’t work, try this:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pca_data <span class="ot">&lt;-</span> <span class="fu">plotPCA</span>(vsd, <span class="at">intgroup =</span> <span class="fu">c</span>(<span class="st">"dex"</span>, <span class="st">"cell"</span>), <span class="at">returnData =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>percentVar <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">attr</span>(pca_data, <span class="st">"percentVar"</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca_data, <span class="fu">aes</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> PC1,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> PC2,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> dex,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">shape =</span> cell</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">paste0</span>(<span class="st">"PC1: "</span>, percentVar[<span class="dv">1</span>], <span class="st">"% variance"</span>)) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">paste0</span>(<span class="st">"PC2: "</span>, percentVar[<span class="dv">2</span>], <span class="st">"% variance"</span>)) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>This plot shows us that 41% of the variance is explained by principal component 1. We can see that this PC separates our two conditions, with all our treated samples on the right and our untreated samples on the left. We can also see that principal component 2 explains 26% of the variance, which explains a lot of the cell-specific genetic expression. The two samples from cell type ‘N080611’ appear to be the most different from the other cell types, sitting further away at the top of the plot. Together these two PCs explain 67% of the variance in gene expression - which is quite a lot! We can keep going further through the PCs – PC3, PC4, PC5 etc – and plot them too, but often the first PCs explain most of the variance.</p>
+<p>Conclusion: treating with dexamethasone has a large effect on the gene expression, but the specific cell type also plays a role in the differences observed.</p>
 
 
 </section>

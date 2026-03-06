@@ -5,4 +5,59 @@ format: html
 
 # Identify Differentially Expressed Genes
 
-In order to identify which genes are differentially expressed between two groups (in this case, we have 4 samples that are in the wild type group and 3 samples in the mutant group), when need to test if the two groups are significantly different from one another, which can be a challenging question to answer. We can start by specifically asking our question as a statistical question: Are the differences we observe between the two groups greater than the differences we would expect to see by chance?
+A fundamental part of RNA-seq is identifying which genes are more highly expressed in one group of samples compared to another group of samples. This is called differential gene expression (DGE) analysis. Notice that we say we are comparing *groups* of samples, not comparing *individual* samples. In science we ***always need replicates*** -- it is not meaningful to make conclusions based on a single sample or observation. 
+
+In order to identify which genes are differentially expressed between two groups (in this case, we have 4 samples that are in the treatment group and 4 samples in the untreated or control group), we need to test if the two groups are significantly different from one another, which can be a challenging question to answer. We can start by specifically asking our question as a statistical question: Are the differences we observe between the two groups greater than the differences we would expect to see by chance?
+
+In practice, a lot of the statistical tests and corrections happen 'behind the scenes' when performing DGE using software such as DESeq2.
+
+Let's run the code and then talk about what's happening:
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(DESeq2)
+dds <- readRDS("data/dds.rds")
+```
+
+```{r}
+dds <- DESeq(dds)
+```
+
+We get a few print out messages as we run this code. What do these outputs mean?
+
+**Estimating size factors:** assesses library size and calculates factors to adjust for differences between samples. This also adjusts for compositional differences (e.g., if gene X in sample 1 takes up a very large proportion of all available reads, other genes will have correspondingly fewer genes. If this effect is not uniform across samples, it can be corrected for during this stage).
+
+**Dispersion:** adjusting for heteroskedasticity. DESeq2 makes use of variability estimates from not just one gene, but from all genes to make estimates about overall levels of variance. By bringing in (or “borrowing”) information from other genes, DESeq2 compensates for a small number of samples (which can lead to artificially small variance estimates otherwise).
+
+::: {.callout-note collapse="true"}
+# Heteroskedasticity
+
+[Heteroscedasticity](https://en.wikipedia.org/wiki/Homoscedasticity_and_heteroscedasticity) is "heterogeneity of variance". If the variance we observe is non-uniform across a range of values, we can describe the dataset as heteroskedastic. This [write-up](https://github.com/friedue/Notes/blob/master/RNA_heteroskedasticity.md) gives an in-depth explanation of heteroskedasticity in RNA-seq and how we can think about it. In RNA-seq, this means that variance depends on the mean expression of the gene. Wikipedia has a useful example:
+
+"A classic example of heteroscedasticity is that of income versus expenditure on meals. A wealthy person may eat inexpensive food sometimes and expensive food at other times. A poor person will almost always eat inexpensive food. Therefore, people with higher incomes exhibit greater variability in expenditures on food." 
+
+
+
+**EXERCISE:**   
+Given the above example, do you expect genes with higher expression to have higher or lower variance than genes with low expression? That is, which will have higher variance - genes with high average expression or genes with low average expression?
+
+::: {.callout-note collapse="true"}
+## Solution
+This can be a surprisingly complex question to answer, and depends on how we think about variance. If a gene has a high mean expression (*e.g.,* say 1000), then we can expect that the standard deviation will be a reasonably high number (*e.g.,* let's say 20). If a gene has low mean expression (e.g., 10), then the standard deviation will be small (*e.g.,* 2). So, it is true to say that for genes with higher average expression, the standard deviation is greater.
+
+However, we also need to think about magnitude of variance, which we can do using the numbers from our above imaginary examples. For the gene with a mean expression of 1000 and sd of 20, going from 1000 to 1020 is not a big change (i.e., 1.02 fold change). For the gene with the low mean expression, going from 10 to 12 *is* a large change (i.e., 1.2 fold change).
+
+Our assumption then is that a large fold change, regardless of the actual read count change for that gene, has a meaningful biological effect. 
+
+:::
+
+
+
+
+
+:::
+
+**Fitting model and testing:** fitting the GLM and identifying differentially expressed genes.

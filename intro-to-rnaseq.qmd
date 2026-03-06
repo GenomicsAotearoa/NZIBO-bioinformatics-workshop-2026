@@ -202,3 +202,11 @@ Now that looks more like real boxplots. What are the plots telling you now?
 At first glance, we can see there are still quite a few zero counts. This is normal -- before we removed only genes where there is a zero count in every sample. Some genes are very lowly expressed -- they have a count of zero in most samples, but not all, and were therefore not removed. 
 
 The next thing we can see is that there is no obvious difference in expression levels of untreated vs treated samples. Often gene expression is more subtle than this -- we'll have to dig deeper!
+
+```{r}
+#| echo: false
+
+saveRDS(countdata_nozeros, "data/countdata_nozeros.rds")
+saveRDS(counts_long, "data/counts_long.rds")
+saveRDS(coldata, "data/coldata.rds")
+```

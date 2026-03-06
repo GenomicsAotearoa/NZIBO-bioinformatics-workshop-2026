@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,6 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./blast-off.html" rel="next">
 <link href="./digging-deeper.html" rel="prev">
 <link href="./theme-images/GA-image-black-favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -103,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">NZIBO Bioinformatics</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/GenomicsAotearoa/" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/GenomicsAotearoa/NZIBO-bioinformatics-workshop-2026" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -150,6 +186,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Identify Differentially Expressed Genes</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./blast-off.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BLAST genes of interest</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -172,7 +214,72 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="identify-differentially-expressed-genes" class="level1">
 <h1>Identify Differentially Expressed Genes</h1>
-<p>In order to identify which genes are differentially expressed between two groups (in this case, we have 4 samples that are in the wild type group and 3 samples in the mutant group), when need to test if the two groups are significantly different from one another, which can be a challenging question to answer. We can start by specifically asking our question as a statistical question: Are the differences we observe between the two groups greater than the differences we would expect to see by chance?</p>
+<p>A fundamental part of RNA-seq is identifying which genes are more highly expressed in one group of samples compared to another group of samples. This is called differential gene expression (DGE) analysis. Notice that we say we are comparing <em>groups</em> of samples, not comparing <em>individual</em> samples. In science we <strong><em>always need replicates</em></strong> – it is not meaningful to make conclusions based on a single sample or observation.</p>
+<p>In order to identify which genes are differentially expressed between two groups (in this case, we have 4 samples that are in the treatment group and 4 samples in the untreated or control group), we need to test if the two groups are significantly different from one another, which can be a challenging question to answer. We can start by specifically asking our question as a statistical question: Are the differences we observe between the two groups greater than the differences we would expect to see by chance?</p>
+<p>In practice, a lot of the statistical tests and corrections happen ‘behind the scenes’ when performing DGE using software such as DESeq2.</p>
+<p>Let’s run the code and then talk about what’s happening:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>estimating size factors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>estimating dispersions</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>gene-wise dispersion estimates</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>mean-dispersion relationship</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>final dispersion estimates</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>fitting model and testing</code></pre>
+</div>
+</div>
+<p>We get a few print out messages as we run this code. What do these outputs mean?</p>
+<p><strong>Estimating size factors:</strong> assesses library size and calculates factors to adjust for differences between samples. This also adjusts for compositional differences (e.g., if gene X in sample 1 takes up a very large proportion of all available reads, other genes will have correspondingly fewer genes. If this effect is not uniform across samples, it can be corrected for during this stage).</p>
+<p><strong>Dispersion:</strong> adjusting for heteroskedasticity. DESeq2 makes use of variability estimates from not just one gene, but from all genes to make estimates about overall levels of variance. By bringing in (or “borrowing”) information from other genes, DESeq2 compensates for a small number of samples (which can lead to artificially small variance estimates otherwise).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Heteroskedasticity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="https://en.wikipedia.org/wiki/Homoscedasticity_and_heteroscedasticity">Heteroscedasticity</a> is “heterogeneity of variance”. If the variance we observe is non-uniform across a range of values, we can describe the dataset as heteroskedastic. This <a href="https://github.com/friedue/Notes/blob/master/RNA_heteroskedasticity.md">write-up</a> gives an in-depth explanation of heteroskedasticity in RNA-seq and how we can think about it. In RNA-seq, this means that variance depends on the mean expression of the gene. Wikipedia has a useful example:</p>
+<p>“A classic example of heteroscedasticity is that of income versus expenditure on meals. A wealthy person may eat inexpensive food sometimes and expensive food at other times. A poor person will almost always eat inexpensive food. Therefore, people with higher incomes exhibit greater variability in expenditures on food.”</p>
+<p><strong>EXERCISE:</strong><br>
+Given the above example, do you expect genes with higher expression to have higher or lower variance than genes with low expression? That is, which will have higher variance - genes with high average expression or genes with low average expression?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This can be a surprisingly complex question to answer, and depends on how we think about variance. If a gene has a high mean expression (<em>e.g.,</em> say 1000), then we can expect that the standard deviation will be a reasonably high number (<em>e.g.,</em> let’s say 20). If a gene has low mean expression (e.g., 10), then the standard deviation will be small (<em>e.g.,</em> 2). So, it is true to say that for genes with higher average expression, the standard deviation is greater.</p>
+<p>However, we also need to think about magnitude of variance, which we can do using the numbers from our above imaginary examples. For the gene with a mean expression of 1000 and sd of 20, going from 1000 to 1020 is not a big change (i.e., 1.02 fold change). For the gene with the low mean expression, going from 10 to 12 <em>is</em> a large change (i.e., 1.2 fold change).</p>
+<p>Our assumption then is that a large fold change, regardless of the actual read count change for that gene, has a meaningful biological effect.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Fitting model and testing:</strong> fitting the GLM and identifying differentially expressed genes.</p>
 
 
 </section>
@@ -584,6 +691,9 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./blast-off.html" class="pagination-link" aria-label="BLAST genes of interest">
+        <span class="nav-page-text">BLAST genes of interest</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
