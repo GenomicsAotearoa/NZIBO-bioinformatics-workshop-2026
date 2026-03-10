@@ -203,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#digging-deeper" id="toc-digging-deeper" class="nav-link active" data-scroll-target="#digging-deeper">Digging deeper</a>
+  <li><a href="#digging-deeper" id="toc-digging-deeper" class="nav-link active" data-scroll-target="#digging-deeper">Digging deeper 🪏</a>
   <ul>
   <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link" data-scroll-target="#principal-component-analysis">Principal component analysis</a></li>
   </ul></li>
@@ -217,7 +217,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="digging-deeper" class="level1">
-<h1>Digging deeper</h1>
+<h1>Digging deeper 🪏</h1>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key points 🔑
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>PCA is a way to visualise how similar or different samples are, taking into account all gene expression at once<br>
+</li>
+<li>In this dataset, PC1 (41% variance) separates treated vs untreated samples, while PC2 (26% variance) reflects cell-type differences</li>
+<li>Raw counts need to be variance-stabilised with <code>vst()</code> before visualisation</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objectives 🎯
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Explain what a PCA plot shows and how to interpret it in the context of RNA-seq<br>
+</li>
+<li>Create a DESeq2 object (<code>dds</code>) and apply variance stabilising transformation (<code>vst()</code>)</li>
+</ul>
+</div>
+</div>
 <p>We have 2 different conditions (treated with dexamethasone vs untreated control) and 4 different cell strains, and we want to explore how each of these could contribute to the overall gene expression profile of the sample.</p>
 <section id="principal-component-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="principal-component-analysis">Principal component analysis</h2>
@@ -288,7 +323,7 @@ ENSG00000000971  3251  3679  6177  4252  6721 11027  5176  7995</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -297,7 +332,7 @@ If the pca code above doesn’t work, try this:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pca_data <span class="ot">&lt;-</span> <span class="fu">plotPCA</span>(vsd, <span class="at">intgroup =</span> <span class="fu">c</span>(<span class="st">"dex"</span>, <span class="st">"cell"</span>), <span class="at">returnData =</span> <span class="cn">TRUE</span>)</span>

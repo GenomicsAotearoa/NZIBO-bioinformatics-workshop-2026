@@ -3,9 +3,9 @@ title: ""
 format: html
 ---
 
-# NZIBO bioinformatics workshop
+# NZIBO bioinformatics workshop 2026
 
-\* insert picture here * 
+![Image generated with Claude AI](figures/nzibo_bioinformatics_logo.svg){fig-align="center"}
 
 ## Getting started with bioinformatics
 
@@ -15,19 +15,29 @@ This workshop was designed for the NZIBO cohort to help get you started with bio
 ## What's covered in this workshop
 
 - Introduction to the R programming language for manipulation and visualisation of data  
-- Introduction to gene expression using an RNA sequencing data set  
+- Introduction to gene expression analysis using an RNA sequencing data set  
 - Using the tool 'BLAST' to investigate genes of interest 
 
 ## What's NOT covered in this workshop
 
-- Using the shell
+- Using the shell / bash programming language
 
 ## Timetable
 
-**Monday 13th April, 2026**
+**Monday 13th April, 2026**  
 
-
-
+| Time     | Session                                          |
+|----------|--------------------------------------------------|
+| 8:30 am  | Speaker presentation by Dr Kimberley Dainty      |
+| 9:00 am  | Introduction to the R programming language       |
+| 9:40 am  | BREAK                                            |
+| 9:55 am  | Introduction to RNAseq                           |
+| 10:45 am | Digging deeper                                   |
+| 10:55 am | BREAK                                            |
+| 11:10 am | Identify DE genes
+| 12:15 pm | LUNCH                                            |
+| 1:00 pm  |                                                  |
+| 3:30 pm  | END OF WORKSHOP                                  |
 
 ## Attribution
 

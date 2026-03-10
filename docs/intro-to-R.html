@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="– NZIBO Bioinformatics">
-<meta property="og:image" content="figures/rstudio_session_default.png">
+<meta property="og:image" content="theme-images/Rlogo-colour.jpeg">
 <meta property="og:site_name" content="NZIBO Bioinformatics">
 </head>
 
@@ -218,6 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#objects-and-assignment" id="toc-objects-and-assignment" class="nav-link" data-scroll-target="#objects-and-assignment"><strong>Objects</strong> and <strong>assignment</strong></a></li>
   <li><a href="#mathematical-operations" id="toc-mathematical-operations" class="nav-link" data-scroll-target="#mathematical-operations">Mathematical operations</a></li>
   </ul></li>
+  <li><a href="#getting-set-up" id="toc-getting-set-up" class="nav-link" data-scroll-target="#getting-set-up">Getting set up</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -236,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Key points
+Key points 🔑
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -256,7 +257,7 @@ Key points
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Objectives
+Objectives 🎯
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -279,14 +280,22 @@ Objectives
 </div>
 <section id="a-brief-history-of-r" class="level2">
 <h2 class="anchored" data-anchor-id="a-brief-history-of-r">A Brief History of R</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img src="theme-images/Rlogo-colour.jpeg" class="img-fluid"></p>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:75%;">
 <p><a href="https://en.wikipedia.org/wiki/R_(programming_language)">R</a> has been around since 1995, and was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand. R is based off the <a href="https://en.wikipedia.org/wiki/S_(programming_language)">S programming language</a> developed at Bell Labs and was developed to teach introductory statistics. See this <a href="https://www.stat.auckland.ac.nz/~ihaka/downloads/Massey.pdf">slide deck</a> by Ross Ihaka for more info on the subject.</p>
+</div>
+</div>
 </section>
 <section id="advantages-of-using-r" class="level2">
 <h2 class="anchored" data-anchor-id="advantages-of-using-r">Advantages of using R</h2>
 <p>At more than 30 years old, R is fairly mature and <a href="https://www.tiobe.com/tiobe-index/r/">growing in popularity</a>. However, programming isn’t a popularity contest. Here are key advantages of analysing data in R:</p>
 <ul>
 <li><p><strong>R is <a href="https://en.wikipedia.org/wiki/Open-source_software">open source</a></strong>. This means R is free - an advantage that means anyone, anywhere can access it. It also means that R is actively developed by a community (see <a href="https://www.r-project.org/">r-project.org</a>), and there are regular updates.</p></li>
-<li><p><strong>R is widely used</strong>. Ok, maybe programming is a popularity contest. Because, R is used in many areas (not just bioinformatics), you are more likely to find help online when you need it. Chances are,almost any error message you run into, someone else has already experienced.</p></li>
+<li><p><strong>R is widely used</strong>. Ok, maybe programming is a popularity contest. Because, R is used in many areas (not just bioinformatics), you are more likely to find help online when you need it. Chances are, almost any error message you run into, someone else has already experienced.</p></li>
 <li><p><strong>R is powerful</strong>. R runs on multiple platforms (Windows/MacOS/Linux). It can work with much larger datasets than popular spreadsheet programs like Microsoft Excel, and because of its scripting capabilities is far more reproducible. Also, there are thousands of available software packages for science, including genomics and other areas of life science.</p></li>
 </ul>
 </section>
@@ -549,9 +558,20 @@ Solution
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="getting-set-up" class="level2">
+<h2 class="anchored" data-anchor-id="getting-set-up">Getting set up</h2>
+<p>We will need a few different packages today, let’s start with installing those:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"DESeq2"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggiraph"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"plotly"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
 </section>
 </section>
 

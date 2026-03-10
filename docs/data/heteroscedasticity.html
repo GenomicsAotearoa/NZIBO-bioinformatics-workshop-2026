@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homoscedasticity vs Heteroscedasticity</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&display=swap');
+  body {
+    background: #F4F7FB;
+    font-family: 'Mukta', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+  .container { max-width: 680px; width: 100%; }
+  h2 {
+    text-align: center;
+    color: #009F5F;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 13.5px;
+    margin-bottom: 28px;
+  }
+  .plots {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .plot-wrap { text-align: center; }
+  .plot-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #2E2F33;
+  }
+  canvas {
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #D7DFEE;
+  }
+  .plot-desc {
+    font-size: 12.5px;
+    color: #555;
+    margin-top: 8px;
+    max-width: 260px;
+  }
+  .callout {
+    margin-top: 24px;
+    background: #fff;
+    border: 1px solid #D7DFEE;
+    border-left: 4px solid #009F5F;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #444;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Homoscedasticity vs Heteroscedasticity</h2>
+  <p class="subtitle">Residual plots — spread of residuals across fitted values</p>
+  <div class="plots">
+    <div class="plot-wrap">
+      <div class="plot-title">Homoscedastic</div>
+      <canvas id="homo" width="280" height="200"></canvas>
+      <p class="plot-desc">Variance is <strong>constant</strong> — spread of residuals stays the same across all values of X</p>
+    </div>
+    <div class="plot-wrap">
+      <div class="plot-title">Heteroscedastic</div>
+      <canvas id="hetero" width="280" height="200"></canvas>
+      <p class="plot-desc">Variance <strong>increases</strong> with X — spread of residuals fans out (common in RNA-seq!)</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Seeded random for reproducibility
+  function seededRandom(seed) {
+    let s = seed;
+    return function() {
+      s = (s * 16807) % 2147483647;
+      return (s - 1) / 2147483646;
+    };
+  }
+
+  function drawPlot(canvasId, heteroscedastic, color, trendColor) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext("2d");
+    const W = canvas.width, H = canvas.height;
+    const padL = 48, padR = 16, padT = 16, padB = 40;
+    const plotW = W - padL - padR;
+    const plotH = H - padT - padB;
+    const rand = seededRandom(heteroscedastic ? 42 : 99);
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Axes
+    ctx.strokeStyle = "#ccc";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(padL, padT);
+    ctx.lineTo(padL, padT + plotH);
+    ctx.lineTo(padL + plotW, padT + plotH);
+    ctx.stroke();
+
+    // Axis labels
+    ctx.fillStyle = "#555";
+    ctx.font = "11px 'Mukta', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("X (mean expression)", padL + plotW / 2, H - 6);
+    ctx.save();
+    ctx.translate(13, padT + plotH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText("Residuals", 0, 0);
+    ctx.restore();
+
+    // Zero line
+    const zeroY = padT + plotH / 2;
+    ctx.strokeStyle = trendColor;
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath();
+    ctx.moveTo(padL, zeroY);
+    ctx.lineTo(padL + plotW, zeroY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Points
+    for (let i = 0; i < 55; i++) {
+      const x = 0.05 + rand() * 0.9;
+      const spread = heteroscedastic ? x * 0.9 : 0.45;
+      const y = (rand() - 0.5) * spread;
+      const cx = padL + x * plotW;
+      const cy = zeroY - y * plotH * 0.9;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 4.5, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.75;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  drawPlot("homo", false, "#009F5F", "#009F5F");
+  drawPlot("hetero", true, "#9E5600", "#9E5600");
+</script>
+</body>
+</html>

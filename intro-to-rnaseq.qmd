@@ -3,7 +3,28 @@ title: ""
 format: html
 ---
 
-# Introduction to RNA sequencing 
+# Introduction to RNA sequencing 🧬💻
+
+::: {.callout-caution appearance="minimal"}
+## Key points 🔑
+
+- RNA-seq captures a snapshot of gene expression across all genes at a given time, making it useful for understanding cellular processes  
+- The two main data objects are **countdata** (raw gene expression counts per gene per sample) and **coldata** (metadata about the samples and experiment)  
+- Raw count data often needs cleaning — removing zero-count genes and log-transforming — before it can be meaningfully visualised  
+
+:::
+
+
+::: {.callout-caution appearance="minimal"}
+## Objectives 🎯
+
+- Describe what RNA-seq is and what kind of biological questions it can answer   
+- Load and inspect a dataframe in R using `read.csv()`, `head()`, and `class()`  
+- Understand the structure of count data and metadata in an RNA-seq experiment  
+- Install and load R packages using `install.packages()` and `library()`  
+- Create and interpret boxplots using `ggplot()` from the tidyverse  
+
+:::
 
 RNA sequencing (RNA-seq) is the process of sequencing the nucleic acid RNA. There are a few types of RNA, but the main one that we will talk about today is mRNA -- messenger RNA -- and is generally the molecule people mean when they refer to RNAseq. mRNA is the messenger molecule in the cell that encodes a *transcript* of a gene, which is then *translated* into a protein by ribosomes in the cell. Proteins have an extremely diverse array of tasks that they perform in the cell and the body -- we won't get into it here, but suffice to say all functions in your body depend on proteins! 
 
@@ -30,11 +51,11 @@ Based on this description, what sort of questions do you think you might want to
 1. Are there gene expression differences in the response of the cells to dexamethasone compared to the untreated control samples?
 2. Are any of the cell lines 'better' at responding to dexamethasone than the other cell lines?
 3. Can the gene expression tell us if this might be a suitable drug to treat asthma?
-4. any others you can think of? 
+4. Any others you can think of? 
 
 :::
 
-## Exploring our data 
+## Exploring our data 🔎
 
 We have prepared some files for you, which are in an open repository online. 
 
@@ -112,7 +133,7 @@ Here is a screenshot showing the whole coldata table:
 
 :::
 
-## Visualising our dataset
+## Visualising our dataset 📊
 
 The first steps in exploratory analysis of gene expression is playing around with visualising the data. You are attempting to get a sense of what the data looks like, to notice outliers or issues (e.g., hey isn’t it weird that one of my untreated samples groups with all the treated samples? I wonder what’s happening there?).
 

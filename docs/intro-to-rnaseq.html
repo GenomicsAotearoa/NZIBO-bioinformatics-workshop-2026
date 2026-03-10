@@ -203,18 +203,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-rna-sequencing" id="toc-introduction-to-rna-sequencing" class="nav-link active" data-scroll-target="#introduction-to-rna-sequencing">Introduction to RNA sequencing</a>
+  <li><a href="#introduction-to-rna-sequencing" id="toc-introduction-to-rna-sequencing" class="nav-link active" data-scroll-target="#introduction-to-rna-sequencing">Introduction to RNA sequencing 🧬💻</a>
   <ul>
   <li><a href="#our-example-rna-seq-dataset" id="toc-our-example-rna-seq-dataset" class="nav-link" data-scroll-target="#our-example-rna-seq-dataset">Our example RNA-seq dataset</a>
   <ul class="collapse">
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion 🧐</a></li>
   </ul></li>
-  <li><a href="#exploring-our-data" id="toc-exploring-our-data" class="nav-link" data-scroll-target="#exploring-our-data">Exploring our data</a>
+  <li><a href="#exploring-our-data" id="toc-exploring-our-data" class="nav-link" data-scroll-target="#exploring-our-data">Exploring our data 🔎</a>
   <ul class="collapse">
   <li><a href="#count-data" id="toc-count-data" class="nav-link" data-scroll-target="#count-data">Count data</a></li>
   <li><a href="#col-data" id="toc-col-data" class="nav-link" data-scroll-target="#col-data">Col data</a></li>
   </ul></li>
-  <li><a href="#visualising-our-dataset" id="toc-visualising-our-dataset" class="nav-link" data-scroll-target="#visualising-our-dataset">Visualising our dataset</a></li>
+  <li><a href="#visualising-our-dataset" id="toc-visualising-our-dataset" class="nav-link" data-scroll-target="#visualising-our-dataset">Visualising our dataset 📊</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -226,7 +226,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="introduction-to-rna-sequencing" class="level1">
-<h1>Introduction to RNA sequencing</h1>
+<h1>Introduction to RNA sequencing 🧬💻</h1>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key points 🔑
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>RNA-seq captures a snapshot of gene expression across all genes at a given time, making it useful for understanding cellular processes<br>
+</li>
+<li>The two main data objects are <strong>countdata</strong> (raw gene expression counts per gene per sample) and <strong>coldata</strong> (metadata about the samples and experiment)<br>
+</li>
+<li>Raw count data often needs cleaning — removing zero-count genes and log-transforming — before it can be meaningfully visualised</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objectives 🎯
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Describe what RNA-seq is and what kind of biological questions it can answer<br>
+</li>
+<li>Load and inspect a dataframe in R using <code>read.csv()</code>, <code>head()</code>, and <code>class()</code><br>
+</li>
+<li>Understand the structure of count data and metadata in an RNA-seq experiment<br>
+</li>
+<li>Install and load R packages using <code>install.packages()</code> and <code>library()</code><br>
+</li>
+<li>Create and interpret boxplots using <code>ggplot()</code> from the tidyverse</li>
+</ul>
+</div>
+</div>
 <p>RNA sequencing (RNA-seq) is the process of sequencing the nucleic acid RNA. There are a few types of RNA, but the main one that we will talk about today is mRNA – messenger RNA – and is generally the molecule people mean when they refer to RNAseq. mRNA is the messenger molecule in the cell that encodes a <em>transcript</em> of a gene, which is then <em>translated</em> into a protein by ribosomes in the cell. Proteins have an extremely diverse array of tasks that they perform in the cell and the body – we won’t get into it here, but suffice to say all functions in your body depend on proteins!</p>
 <p>RNAseq is a relatively quick and inexpensive method for capturing a snapshot of all the genes that are being expressed at any particular time in a specific tissue or location. This makes it a fantastic and versatile technology for understanding gene expression dynamics and infer what sort of cellular processes are happening at a given time, in a given tissue or under a given stimulus.</p>
 <section id="our-example-rna-seq-dataset" class="level2">
@@ -239,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="discussion">Discussion 🧐</h4>
 <p>Based on this description, what sort of questions do you think you might want to answer with gene expression analysis of this dataset?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -248,13 +290,13 @@ SOLUTIONS
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Are there gene expression differences in the response of the cells to dexamethasone compared to the untreated control samples?</li>
 <li>Are any of the cell lines ‘better’ at responding to dexamethasone than the other cell lines?</li>
 <li>Can the gene expression tell us if this might be a suitable drug to treat asthma?</li>
-<li>any others you can think of?</li>
+<li>Any others you can think of?</li>
 </ol>
 </div>
 </div>
@@ -262,7 +304,7 @@ SOLUTIONS
 </section>
 </section>
 <section id="exploring-our-data" class="level2">
-<h2 class="anchored" data-anchor-id="exploring-our-data">Exploring our data</h2>
+<h2 class="anchored" data-anchor-id="exploring-our-data">Exploring our data 🔎</h2>
 <p>We have prepared some files for you, which are in an open repository online.</p>
 <p>Let’s load them in to our RStudio and orientate ourselves to the data.</p>
 <p>We’ll first load in some metadata about our RNA-seq experiment from a csv file or “comma-separated values”, which is a common way to save data from excel in a programming language friendly way.</p>
@@ -339,7 +381,7 @@ SOLUTIONS
 <li>The fifth column <strong>‘albut’</strong> indicates all samples were untreated. What do you think this means?</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -348,7 +390,7 @@ Solutions:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>We can see that there are four unique cell lines used in this experiment, and for each cell line, there was one untreated and one dexamethasone treated sample. This is an important part of robust experimental design – each cell line could respond differently so you need to control for this by testing every condition on all cell lines.</p></li>
@@ -360,7 +402,7 @@ Solutions:
 </section>
 </section>
 <section id="visualising-our-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="visualising-our-dataset">Visualising our dataset</h2>
+<h2 class="anchored" data-anchor-id="visualising-our-dataset">Visualising our dataset 📊</h2>
 <p>The first steps in exploratory analysis of gene expression is playing around with visualising the data. You are attempting to get a sense of what the data looks like, to notice outliers or issues (e.g., hey isn’t it weird that one of my untreated samples groups with all the treated samples? I wonder what’s happening there?).</p>
 <p>If your data set was a physical problem (like a squeaky wheel or a well wrapped present) you’d physically explore it (pick it up, is it heavy, do I shake it?). Exploratory analysis is the data science equivalent.</p>
 <p>The first to help with our future data analysis, is to rename the column names for the samples.</p>
