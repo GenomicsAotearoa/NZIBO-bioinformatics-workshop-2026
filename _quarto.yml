@@ -24,7 +24,7 @@ website:
         href: digging-deeper.qmd
       - text: "Identify Differentially Expressed Genes"
         href: degs.qmd
-      - text: "BLAST genes of interest"
+      - text: "Genes, databases and BLAST"
         href: blast-off.qmd
 
     

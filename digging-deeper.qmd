@@ -29,7 +29,7 @@ We have 2 different conditions (treated with dexamethasone vs untreated control)
 
 A way to visualise sample-to-sample distances is a principal-components analysis (PCA). In this ordination method, the data points (i.e., here, the samples) are projected onto the 2D plane such that they spread out in the two directions which explain most of the differences in the data. The x-axis is the direction (or principal component) which separates the data points the most. The amount of the total variance which is contained in the direction is printed in the axis label.
 
-In simple turns, we are making a plot that shows us how similar or different each sample, taking in to account all of the gene expression. A PCA plot can help us see the biggest sources of biological variation and help determine which has more of an affect on the gene expression -- whether that be the treatment type, the cell type or something else. 
+In simple turns, we are making a plot that shows us how similar or different each sample, taking in to account all of the gene expression. A PCA plot can help us see the biggest sources of biological variation and help determine which has more of an affect on the gene expression -- whether that be the treatment type, the cell type or something else (*e.g.,* an unintended batch effect) 
 
 ```{r}
 #| echo: false
@@ -37,6 +37,7 @@ In simple turns, we are making a plot that shows us how similar or different eac
 countdata_nozeros <- readRDS("data/countdata_nozeros.rds")
 counts_long <- readRDS("data/counts_long.rds")
 coldata <- readRDS("data/coldata.rds")
+countdata <- readRDS("data/countdata.rds")
 ```
 
 
@@ -57,12 +58,12 @@ We will use DEseq to to generate a special type of object in R, which will be ca
 
 ```{r}
 
-# first need to make gene ID a rowname rather than its own columns. 
-countdata_fordds <- countdata_nozeros %>% 
-  column_to_rownames("GeneID")
+# factorise coldata columns to make R see each column as groups 
+coldata$dex <-  relevel(factor(coldata$dex), ref = "untrt")
+coldata$cell <- factor(coldata$cell)
 
 # now make the special deseq object, loading in counts and metadata and choosing the design
-dds <- DESeqDataSetFromMatrix(countData = countdata_fordds, 
+dds <- DESeqDataSetFromMatrix(countData = countdata, 
                               colData = coldata,
                               design = ~ cell + dex)
 ```
@@ -76,7 +77,7 @@ head(counts(dds))
 These are still the same as our original count data, we can check that by also running head on 'countdata_fordds' too. 
 
 ```{r}
-head(countdata_fordds)
+head(countdata)
 ```
 
 

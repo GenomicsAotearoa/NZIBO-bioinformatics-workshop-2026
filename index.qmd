@@ -5,7 +5,7 @@ format: html
 
 # NZIBO bioinformatics workshop 2026
 
-![Image generated with Claude AI](figures/nzibo_bioinformatics_logo.svg){fig-align="center"}
+![Image generated with Claude AI](figures/nzibo_bioinformatics_logo_cartoon.jpg){fig-align="center" width="70%"}
 
 ## Getting started with bioinformatics
 

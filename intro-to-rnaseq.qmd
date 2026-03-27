@@ -65,7 +65,7 @@ We'll first load in some metadata about our RNA-seq experiment from a csv file o
 
 
 ```{r}
-coldata <- read.csv("data/coldata.csv")
+coldata <- read.csv("https://raw.githubusercontent.com/GenomicsAotearoa/NZIBO-bioinformatics-workshop-2026/refs/heads/main/data/coldata.csv")
 head(coldata) # this head function shows the first 6 lines of an object. 
 
 ```
@@ -81,7 +81,7 @@ class(coldata)
 Next let's load in some count data. 
 
 ```{r}
-countdata <- read.csv("data/count.data.csv")
+countdata <- read.csv("https://raw.githubusercontent.com/GenomicsAotearoa/NZIBO-bioinformatics-workshop-2026/refs/heads/main/data/count.data.csv", row.names = "GeneID")
 head(countdata) 
 ```
 
@@ -91,7 +91,7 @@ Look at the environment panel. How many rows and columns are there for the colda
 
 
 
-There are over 60,000 rows for count data! This is common when working with genetic datasets to have a lot of rows. Hence, its alwaysa good idead to use the `head()` function to look at these dataframes, as they are too big to view otherwise. 
+There are over 60,000 rows for count data! This is common when working with genetic datasets to have a lot of rows. Hence, its always a good idea to use the `head()` function to look at these dataframes, as they are too big to view otherwise. 
 
 In saying that, RStudio has a very nice viewing feature for dataframes. Click on the object name in the environment to open the table viewer. 
 
@@ -143,18 +143,17 @@ The first to help with our future data analysis, is to rename the column names f
 
 
 ```{r}
-names(countdata)[2:9] <- c("S1-Un", "S2-Tr","S3-Un", "S4-Tr","S5-Un", "S6-Tr","S7-Un", "S8-Tr")
+names(countdata) <- c("S1-Un", "S2-Tr","S3-Un", "S4-Tr","S5-Un", "S6-Tr","S7-Un", "S8-Tr")
 head(countdata)
 ```
 
 
-The next thing we will do is create some boxplots. There is a great function in R called `ggplot()` that we will use. `ggplot` comes from a package called tidyverse that you will need to install by running this code:
+The next thing we will do is create some boxplots. There is a great function in R called `ggplot()` that we will use. 
 
 ```{r}
 #| eval: false
 
 install.packages("tidyverse")
-
 ```
 
 Then, we need to load the package into our RStudio using the function `library()`. You only need to install a package once (well, until there are new updates to install), but every time you start up your RStudio you'll need to run `library()` again. It's a bit like if the software was a book, and your computer is your bookshelf. Once you install the software or 'book', it's sitting on your computer or 'bookshelf'. But if you want to use the software (read the book), you need to go to the bookshelf, pick up the book and open it -- i.e., run the code `library()` 
@@ -170,6 +169,7 @@ First we will convert the counts to a 'long' format. Don't worry too much about 
 ```{r}
 # Convert counts data to long format for ggplot
 counts_long <- countdata %>%
+  rownames_to_column("GeneID") %>%
   pivot_longer(cols = -GeneID, names_to = "Sample", values_to = "Counts")
 ```
 
@@ -198,8 +198,8 @@ colSums(countdata == 0) # adds up how many zeros are in each column
 Let's remove them from our countdata using some code, which uses some neat tidyverse functions:
 
 ```{r}
-countdata_nozeros <- countdata %>%
-  filter(rowSums(across(-GeneID)) > 0)
+countdata_nozeros <- countdata[rowSums(countdata) > 0, ]
+
 ```
 
 Then remake our long counts format, make a new column with the logged counts and replot:
@@ -207,14 +207,13 @@ Then remake our long counts format, make a new column with the logged counts and
 ```{r}
 
 counts_long <- countdata_nozeros %>%
-  pivot_longer(cols = -GeneID, names_to = "Sample", values_to = "Counts") 
-
-counts_long <- counts_long %>%
+  rownames_to_column("GeneID") %>%
+  pivot_longer(cols = -GeneID, names_to = "Sample", values_to = "Counts") %>%
   mutate(logCounts = log2(Counts + 1))
 
 ggplot(data = counts_long, mapping = aes(x = Sample, y = logCounts)) +
   geom_boxplot() +
-  labs(x = "Samples", y = "Logged counts") +
+  labs(x = "Samples", y = "Logged counts+1") +
   theme_minimal()
 ```
 
@@ -230,4 +229,5 @@ The next thing we can see is that there is no obvious difference in expression l
 saveRDS(countdata_nozeros, "data/countdata_nozeros.rds")
 saveRDS(counts_long, "data/counts_long.rds")
 saveRDS(coldata, "data/coldata.rds")
+saveRDS(countdata, "data/countdata.rds")
 ```

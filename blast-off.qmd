@@ -3,7 +3,19 @@ title: ""
 format: html
 ---
 
+# Genomic databases
+
+There are many databases that hold information about genes. 
+
+top most hihgly expressed genmes in upregulated
+
+WIll need to go through a couple of upregualedt geens mostly and check their functions. check the bioconductor original lesson too, what did they doid - doesnt seem like they went gen by gen but htey did do GO. 
+
 # Basic Local Alignment Search Tool (BLAST) 🚀
+
+
+maybe does not need to be one story here. 
+ genes and databases and blast
 
 
 Take a few genes of interest and live blast them to see stuff 

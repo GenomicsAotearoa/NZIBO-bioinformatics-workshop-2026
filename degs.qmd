@@ -144,7 +144,6 @@ results <- DESeq2::results(dds)
 
 results |> head()
 
-results |> summary()
 ```
 
 The results object contains information for all genes tested. It is practical to create a new object that contains only the genes we consider differentially expressed based on the thresholds (p-value, logFC) and methods (e.g., multiple testing adjustment) that suit our situation.
@@ -154,17 +153,10 @@ We will remove any rows that have NAs in the results object, then pull out only 
 ```{r}
 results <- na.omit(results)
 
-# Keep all rows in the res object if the adjusted p-value < 0.05
-resultsPadj <- results[results$padj <= 0.05 , ]
+# Keep all rows in the res object if the adjusted p-value < 0.05 and log2FC more than 1 or -1. 
+resultsPadjLogFC <- results[results$padj <= 0.05 & abs(results$log2FoldChange) > 1,]
 
-resultsPadjLogFC <- results[results$padj <= 0.05 & abs(results$log2FoldChange) > log2(2),]
-
-# Get dimensions
-resultsPadj |> dim()
 resultsPadjLogFC |> dim()
-
-
-resultsPadj |> head()
 resultsPadjLogFC |> head()
 
 
@@ -173,11 +165,12 @@ resultsPadjLogFC |> head()
 
 
 
-
+### 👀 Demo only: Create volcano plot to visualise up and down gene regulation
 
 ```{r}
+#| message: false
 
-
+library(ggplot2)
 library(ggiraph)
 library(plotly)
 
@@ -234,27 +227,13 @@ interactive_plot
 
 ```
 
-### Differentially expressed genes stored
+We can see that there are a couple of genes that are quite highly up and down regulated. Let's pick a few of these to explore further...
 
-Let's make an object to store all the information for our list of significantly differentially expressed genes. We will use a threshold of an adjusted p-value \< 0.05 and a logFC \> 1. We will return to this object later, but for now we will move on and identify differentially expressed genes using a different method.
+
 
 ```{r}
-#| eval: false
+#| echo: false
 
-sigGenesLimma = which(tt$adj.P.Val <= 0.05 & (abs(tt$logFC) > log2(2)))
-length(sigGenesLimma)
-# 1891
+saveRDS(resultsPadjLogFC, "data/resultsPadjLogFC.rds")
 
-sigGenesLimma <- tt[sigGenesLimma, ]
-```
-
-
-
-
-For simplicity, we will take the list of genes identified by limma. We will save the R object, and then see in the next episode how we can derive meaningful biological information from this long list of genes.
-
-```{r}
-#| eval: false
-
-save(sigGenesLimma, file = 'topTable.RData')
 ```

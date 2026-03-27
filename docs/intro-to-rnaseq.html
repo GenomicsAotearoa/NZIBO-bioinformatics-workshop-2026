@@ -190,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./blast-off.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BLAST genes of interest</span></a>
+ <span class="menu-text">Genes, databases and BLAST</span></a>
   </div>
 </li>
     </ul>
@@ -309,7 +309,7 @@ SOLUTIONS
 <p>Let’s load them in to our RStudio and orientate ourselves to the data.</p>
 <p>We’ll first load in some metadata about our RNA-seq experiment from a csv file or “comma-separated values”, which is a common way to save data from excel in a programming language friendly way.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>coldata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/coldata.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>coldata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/GenomicsAotearoa/NZIBO-bioinformatics-workshop-2026/refs/heads/main/data/coldata.csv"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(coldata) <span class="co"># this head function shows the first 6 lines of an object. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Sample SampleName    cell   dex albut        Run avgLength Experiment
@@ -331,28 +331,28 @@ SOLUTIONS
 </div>
 <p>Next let’s load in some count data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>countdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/count.data.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>countdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/GenomicsAotearoa/NZIBO-bioinformatics-workshop-2026/refs/heads/main/data/count.data.csv"</span>, <span class="at">row.names =</span> <span class="st">"GeneID"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(countdata) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           GeneID SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516
-1 ENSG00000000003        679        448        873        408       1138
-2 ENSG00000000005          0          0          0          0          0
-3 ENSG00000000419        467        515        621        365        587
-4 ENSG00000000457        260        211        263        164        245
-5 ENSG00000000460         60         55         40         35         78
-6 ENSG00000000938          0          0          2          0          1
-  SRR1039517 SRR1039520 SRR1039521
-1       1047        770        572
-2          0          0          0
-3        799        417        508
-4        331        233        229
-5         63         76         60
-6          0          0          0</code></pre>
+<pre><code>                SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516
+ENSG00000000003        679        448        873        408       1138
+ENSG00000000005          0          0          0          0          0
+ENSG00000000419        467        515        621        365        587
+ENSG00000000457        260        211        263        164        245
+ENSG00000000460         60         55         40         35         78
+ENSG00000000938          0          0          2          0          1
+                SRR1039517 SRR1039520 SRR1039521
+ENSG00000000003       1047        770        572
+ENSG00000000005          0          0          0
+ENSG00000000419        799        417        508
+ENSG00000000457        331        233        229
+ENSG00000000460         63         76         60
+ENSG00000000938          0          0          0</code></pre>
 </div>
 </div>
 <p>Look at the environment panel. How many rows and columns are there for the coldata and countdata objects? (Observations = rows. Variables = columns.)</p>
 <p><img src="figures/rstudio-data-objects.png" class="img-fluid"></p>
-<p>There are over 60,000 rows for count data! This is common when working with genetic datasets to have a lot of rows. Hence, its alwaysa good idead to use the <code>head()</code> function to look at these dataframes, as they are too big to view otherwise.</p>
+<p>There are over 60,000 rows for count data! This is common when working with genetic datasets to have a lot of rows. Hence, its always a good idea to use the <code>head()</code> function to look at these dataframes, as they are too big to view otherwise.</p>
 <p>In saying that, RStudio has a very nice viewing feature for dataframes. Click on the object name in the environment to open the table viewer.</p>
 <p>These two objects are all we need to start exploring gene expression.</p>
 <section id="count-data" class="level3">
@@ -407,19 +407,19 @@ Solutions:
 <p>If your data set was a physical problem (like a squeaky wheel or a well wrapped present) you’d physically explore it (pick it up, is it heavy, do I shake it?). Exploratory analysis is the data science equivalent.</p>
 <p>The first to help with our future data analysis, is to rename the column names for the samples.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(countdata)[<span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"S1-Un"</span>, <span class="st">"S2-Tr"</span>,<span class="st">"S3-Un"</span>, <span class="st">"S4-Tr"</span>,<span class="st">"S5-Un"</span>, <span class="st">"S6-Tr"</span>,<span class="st">"S7-Un"</span>, <span class="st">"S8-Tr"</span>)</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(countdata) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"S1-Un"</span>, <span class="st">"S2-Tr"</span>,<span class="st">"S3-Un"</span>, <span class="st">"S4-Tr"</span>,<span class="st">"S5-Un"</span>, <span class="st">"S6-Tr"</span>,<span class="st">"S7-Un"</span>, <span class="st">"S8-Tr"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(countdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           GeneID S1-Un S2-Tr S3-Un S4-Tr S5-Un S6-Tr S7-Un S8-Tr
-1 ENSG00000000003   679   448   873   408  1138  1047   770   572
-2 ENSG00000000005     0     0     0     0     0     0     0     0
-3 ENSG00000000419   467   515   621   365   587   799   417   508
-4 ENSG00000000457   260   211   263   164   245   331   233   229
-5 ENSG00000000460    60    55    40    35    78    63    76    60
-6 ENSG00000000938     0     0     2     0     1     0     0     0</code></pre>
+<pre><code>                S1-Un S2-Tr S3-Un S4-Tr S5-Un S6-Tr S7-Un S8-Tr
+ENSG00000000003   679   448   873   408  1138  1047   770   572
+ENSG00000000005     0     0     0     0     0     0     0     0
+ENSG00000000419   467   515   621   365   587   799   417   508
+ENSG00000000457   260   211   263   164   245   331   233   229
+ENSG00000000460    60    55    40    35    78    63    76    60
+ENSG00000000938     0     0     2     0     1     0     0     0</code></pre>
 </div>
 </div>
-<p>The next thing we will do is create some boxplots. There is a great function in R called <code>ggplot()</code> that we will use. <code>ggplot</code> comes from a package called tidyverse that you will need to install by running this code:</p>
+<p>The next thing we will do is create some boxplots. There is a great function in R called <code>ggplot()</code> that we will use.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -443,7 +443,8 @@ Solutions:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert counts data to long format for ggplot</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>counts_long <span class="ot">&lt;-</span> countdata <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>GeneID, <span class="at">names_to =</span> <span class="st">"Sample"</span>, <span class="at">values_to =</span> <span class="st">"Counts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"GeneID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>GeneID, <span class="at">names_to =</span> <span class="st">"Sample"</span>, <span class="at">values_to =</span> <span class="st">"Counts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can make a boxplot using ggplot. Again don’t worry too much about how this code is working, but we’ll explain it a little. ggplot graphics are built step-by-step by adding new elements with the “+” symbol. Adding layers in this fashion allows for extensive flexibility and customisation of plots, and more equally important the readability of the code. The first line of code is important - the object with the data is specified first, then the x and y aesthetics are mapped. Each line after the first builds up the plot in layers, and the next important line of code is the geom. There are many many geoms, corresponding to any plot or graph you can think of. Here we will use a boxplot.</p>
 <div class="cell">
@@ -467,27 +468,25 @@ Solutions:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(countdata <span class="sc">==</span> <span class="dv">0</span>) <span class="co"># adds up how many zeros are in each column </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>GeneID  S1-Un  S2-Tr  S3-Un  S4-Tr  S5-Un  S6-Tr  S7-Un  S8-Tr 
-     0  39044  39150  37978  40553  38169  37679  39015  39686 </code></pre>
+<pre><code>S1-Un S2-Tr S3-Un S4-Tr S5-Un S6-Tr S7-Un S8-Tr 
+39044 39150 37978 40553 38169 37679 39015 39686 </code></pre>
 </div>
 </div>
 <p>Let’s remove them from our countdata using some code, which uses some neat tidyverse functions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>countdata_nozeros <span class="ot">&lt;-</span> countdata <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="sc">-</span>GeneID)) <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>countdata_nozeros <span class="ot">&lt;-</span> countdata[<span class="fu">rowSums</span>(countdata) <span class="sc">&gt;</span> <span class="dv">0</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then remake our long counts format, make a new column with the logged counts and replot:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>counts_long <span class="ot">&lt;-</span> countdata_nozeros <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>GeneID, <span class="at">names_to =</span> <span class="st">"Sample"</span>, <span class="at">values_to =</span> <span class="st">"Counts"</span>) </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>counts_long <span class="ot">&lt;-</span> counts_long <span class="sc">%&gt;%</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">logCounts =</span> <span class="fu">log2</span>(Counts <span class="sc">+</span> <span class="dv">1</span>))</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts_long, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sample, <span class="at">y =</span> logCounts)) <span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Samples"</span>, <span class="at">y =</span> <span class="st">"Logged counts"</span>) <span class="sc">+</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"GeneID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>GeneID, <span class="at">names_to =</span> <span class="st">"Sample"</span>, <span class="at">values_to =</span> <span class="st">"Counts"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">logCounts =</span> <span class="fu">log2</span>(Counts <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts_long, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sample, <span class="at">y =</span> logCounts)) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Samples"</span>, <span class="at">y =</span> <span class="st">"Logged counts+1"</span>) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
