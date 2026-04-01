@@ -227,7 +227,31 @@ interactive_plot
 
 ```
 
-We can see that there are a couple of genes that are quite highly up and down regulated. Let's pick a few of these to explore further...
+\
+
+We can see that there are a couple of genes that are quite highly up and down regulated. Let's pick a few of these to explore further.
+
+
+#### Bonus: How we filtered the data to get our top genes (demo only)
+
+First, we created a new data frame that contains only the genes that are significantly differentially expressed based on our thresholds for adjusted p-value and log fold change (`resultsPadjLogFC`). We then created two new data frames, one for upregulated genes and one for downregulated genes, and sorted them by log fold change.
+```{r}
+# create upregulated genes only dataframe
+resultsUpReg <- as.data.frame(resultsPadjLogFC[resultsPadjLogFC$log2FoldChange>=0,]) |>
+arrange(desc(log2FoldChange))
+
+# create downregulated genes only dataframe
+resultsDownReg <- as.data.frame(resultsPadjLogFC[resultsPadjLogFC$log2FoldChange<=0,]) |> 
+arrange(log2FoldChange)
+```
+
+
+Now have a look at the first few rows of the upregulated and downregulated genes. You can see the most highly expressed genes are at the top of each table (looking at the log2FoldChange column). 
+
+```{r}
+head(resultsUpReg)
+head(resultsDownReg)
+```
 
 
 

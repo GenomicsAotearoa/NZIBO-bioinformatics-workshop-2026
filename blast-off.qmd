@@ -5,20 +5,30 @@ format: html
 
 # Genomic databases
 
-There are many databases that hold information about genes. 
+There are many databases that hold information about genes. Today, we are going to look at the most highly upregulated gene in our treated samples, *ALOX15B*, and explore what we can learn about it from genomic databases.
 
-top most hihgly expressed genmes in upregulated
+First, let's look at the gene on GeneCards, the human gene database:
 
-WIll need to go through a couple of upregualedt geens mostly and check their functions. check the bioconductor original lesson too, what did they doid - doesnt seem like they went gen by gen but htey did do GO. 
-
-# Basic Local Alignment Search Tool (BLAST) 🚀
+[GeneCards link](https://www.genecards.org/cgi-bin/carddisp.pl?gene=ALOX15B)
 
 
-maybe does not need to be one story here. 
- genes and databases and blast
+![](figures/gene-cards.png)
 
 
-Take a few genes of interest and live blast them to see stuff 
+## NCBI 
+
+
+how many exons does it have
+where does the cds start? cna you find the start codon on the nucleotide sequence? does it start at exon 1 base 1? is teh poly A site in the last exon and is it in teh cds?
+
+run blast p  
+
+GenBank
+
+
+### Basic Local Alignment Search Tool (BLAST) 🚀
+
+run blast p  
 
 sequence alignment impotant skill
 idnetify intor exon also important

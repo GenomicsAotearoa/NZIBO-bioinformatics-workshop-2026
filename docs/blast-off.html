@@ -74,6 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="– NZIBO Bioinformatics">
 <meta property="og:description" content="">
+<meta property="og:image" content="figures/gene-cards.png">
 <meta property="og:site_name" content="NZIBO Bioinformatics">
 </head>
 
@@ -166,8 +167,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#genomic-databases" id="toc-genomic-databases" class="nav-link active" data-scroll-target="#genomic-databases">Genomic databases</a></li>
+  <li><a href="#genomic-databases" id="toc-genomic-databases" class="nav-link active" data-scroll-target="#genomic-databases">Genomic databases</a>
+  <ul>
+  <li><a href="#ncbi" id="toc-ncbi" class="nav-link" data-scroll-target="#ncbi">NCBI</a>
+  <ul class="collapse">
   <li><a href="#basic-local-alignment-search-tool-blast" id="toc-basic-local-alignment-search-tool-blast" class="nav-link" data-scroll-target="#basic-local-alignment-search-tool-blast">Basic Local Alignment Search Tool (BLAST) 🚀</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -179,17 +185,23 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="genomic-databases" class="level1">
 <h1>Genomic databases</h1>
-<p>There are many databases that hold information about genes.</p>
-<p>top most hihgly expressed genmes in upregulated</p>
-<p>WIll need to go through a couple of upregualedt geens mostly and check their functions. check the bioconductor original lesson too, what did they doid - doesnt seem like they went gen by gen but htey did do GO.</p>
-</section>
-<section id="basic-local-alignment-search-tool-blast" class="level1">
-<h1>Basic Local Alignment Search Tool (BLAST) 🚀</h1>
-<p>maybe does not need to be one story here. genes and databases and blast</p>
-<p>Take a few genes of interest and live blast them to see stuff</p>
+<p>There are many databases that hold information about genes. Today, we are going to look at the most highly upregulated gene in our treated samples, <em>ALOX15B</em>, and explore what we can learn about it from genomic databases.</p>
+<p>First, let’s look at the gene on GeneCards, the human gene database:</p>
+<p><a href="https://www.genecards.org/cgi-bin/carddisp.pl?gene=ALOX15B">GeneCards link</a></p>
+<p><img src="figures/gene-cards.png" class="img-fluid"></p>
+<section id="ncbi" class="level2">
+<h2 class="anchored" data-anchor-id="ncbi">NCBI</h2>
+<p>how many exons does it have where does the cds start? cna you find the start codon on the nucleotide sequence? does it start at exon 1 base 1? is teh poly A site in the last exon and is it in teh cds?</p>
+<p>run blast p</p>
+<p>GenBank</p>
+<section id="basic-local-alignment-search-tool-blast" class="level3">
+<h3 class="anchored" data-anchor-id="basic-local-alignment-search-tool-blast">Basic Local Alignment Search Tool (BLAST) 🚀</h3>
+<p>run blast p</p>
 <p>sequence alignment impotant skill idnetify intor exon also important</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
