@@ -253,7 +253,7 @@ head(resultsUpReg)
 head(resultsDownReg)
 ```
 
-
+These tables now show our top upregulated and downregulated genes in order, which we can explore further. The gene IDs shown are from the Ensembl database, which we can search online to find the gene name and function. For the next lesson, we are going to focus on one gene, which is the most highly expressed gene in our dexamethasone treated samples (*i.e.,* gene ENSG00000179593 from the upregulated table). 
 
 ```{r}
 #| echo: false

@@ -12,8 +12,6 @@ website:
     style: "docked"
     left:
     contents:
-      - text: "_test styles"
-        href: test-styling.qmd
       - text: "Home"
         href: index.qmd
       - text: "Introduction to the R programming language"
