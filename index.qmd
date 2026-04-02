@@ -9,7 +9,7 @@ format: html
 
 ## Getting started with bioinformatics
 
-This workshop was designed for the NZIBO cohort to help get you started with bioinformatic skill sets and thinking. Bioinformatics is computational skills specifically for biologists, often skills needed to analyse genomic data sets (e.g., genomes, genes, transcriptomes, and many other kinds of data sets that revolve around the nucleic acids DNA and RNA!). Therefore there are many different tools you can use. A few programming langaues, such as bash and R, transcend any one particular topic and are used by almost all scientific disciplines to manipulate and investigate data. 
+This workshop was designed for the NZIBO cohort to help get you started with bioinformatic skill sets and thinking. Bioinformatics is computational skills specifically for biologists, often skills needed to analyse genomic data sets (e.g., genomes, genes, transcriptomes, and many other kinds of data sets that revolve around the nucleic acids DNA and RNA!). Therefore there are many different tools you can use. A few programming languages, such as bash and R, transcend any one particular topic and are used by almost all scientific disciplines to manipulate and investigate data. 
 
 
 ## What's covered in this workshop

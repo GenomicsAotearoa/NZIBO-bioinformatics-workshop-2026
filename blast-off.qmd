@@ -11,7 +11,7 @@ First, let's look at the gene on GeneCards, the human gene database:
 
 [GeneCards link](https://www.genecards.org/cgi-bin/carddisp.pl?gene=ALOX15B)
 
-Look at the section on the website here summairisin the information about the gene. There are links to the gene on other databases, such as NCBI and Ensembl (note our gene ID in the dataset is the Ensembl ID), and there is a lot of information about the gene, including its function, expression, and interactions with other proteins in these databases. 
+Look at the section on the website here summarising the information about the gene. There are links to the gene on other databases, such as NCBI and Ensembl (note our gene ID in the dataset is the Ensembl ID), and there is a lot of information about the gene, including its function, expression, and interactions with other proteins in these databases. 
 
 ![](figures/gene-cards.png)
 
