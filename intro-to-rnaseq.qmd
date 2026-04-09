@@ -148,15 +148,9 @@ head(countdata)
 ```
 
 
-The next thing we will do is create some boxplots. There is a great function in R called `ggplot()` that we will use. 
+The next thing we will do is create some boxplots. There is a great function in R called `ggplot()` that we will use from the tidyverse package. 
 
-```{r}
-#| eval: false
-
-install.packages("tidyverse")
-```
-
-Then, we need to load the package into our RStudio using the function `library()`. You only need to install a package once (well, until there are new updates to install), but every time you start up your RStudio you'll need to run `library()` again. It's a bit like if the software was a book, and your computer is your bookshelf. Once you install the software or 'book', it's sitting on your computer or 'bookshelf'. But if you want to use the software (read the book), you need to go to the bookshelf, pick up the book and open it -- i.e., run the code `library()` 
+We need to load the package into our RStudio using the function `library()`. You only need to install a package once (well, until there are new updates to install), but every time you start up your RStudio you'll need to run `library()` again. It's a bit like if the software was a book, and your computer is your bookshelf. Once you install the software or 'book', it's sitting on your computer or 'bookshelf'. But if you want to use the software (read the book), you need to go to the bookshelf, pick up the book and open it -- *i.e.,* run the code `library()` 
 
 ```{r}
 
@@ -168,8 +162,8 @@ library(tidyverse)
 First we will convert the counts to a 'long' format. Don't worry too much about how this code is working. What is happening is we are making a new dataframe caled counts_long, which are in a format that ggplot prefers. The data itself has not changed, it has simply re-arranged. 
 ```{r}
 # Convert counts data to long format for ggplot
-counts_long <- countdata %>%
-  rownames_to_column("GeneID") %>%
+counts_long <- countdata |>
+  rownames_to_column("GeneID") |>
   pivot_longer(cols = -GeneID, names_to = "Sample", values_to = "Counts")
 ```
 
@@ -206,9 +200,9 @@ Then remake our long counts format, make a new column with the logged counts and
 
 ```{r}
 
-counts_long <- countdata_nozeros %>%
-  rownames_to_column("GeneID") %>%
-  pivot_longer(cols = -GeneID, names_to = "Sample", values_to = "Counts") %>%
+counts_long <- countdata_nozeros |>
+  rownames_to_column("GeneID") |>
+  pivot_longer(cols = -GeneID, names_to = "Sample", values_to = "Counts") |>
   mutate(logCounts = log2(Counts + 1))
 
 ggplot(data = counts_long, mapping = aes(x = Sample, y = logCounts)) +

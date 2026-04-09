@@ -144,6 +144,9 @@ One of the benefits you can take advantage of in RStudio is something called an 
 
 :::
 
+## Set-up for today
+
+First, go to your desktop and create a folder called `bioinformatics-day`. This is where we will save all of the files we create during this workshop. You can also create an RStudio project for this folder if you like (see above).
 
 ## Creating your first R script
 
@@ -196,43 +199,42 @@ include a comment on the purpose of commands you are learning, e.g.:
 
 
 ```{r}
-# this command shows the current working directory getwd()
+#| eval: false
+
+getwd() # this command shows the current working directory 
 ```
 
 
-
-
-
-For the purposes of this exercise we want you to be in the directory
-`"/home/shared/<USERID>/R4Genomics"`. What if you weren't? You can set your home
-directory using the `setwd()` command. Enter this command in your
+You can set your home directory using the `setwd()` command. Enter this command in your
 script, but ***don't run*** this yet.
 
+```{r}
+#| eval: false
 
- ```r
- # This sets the working directory
- setwd()
- ```
+
+setwd() # This sets the working directory
+```
+
 
 You may have guessed, you need to tell the `setwd()` command what directory you 
 want to set as your working directory. To do so, inside of the parentheses, open
 a set of quotes `""`. Inside the quotes enter a `/` which is the root directory for 
-Linux. Next, use the `Tab` key, to take advantage of RStudio's 
-tab-autocompletion method, to select `home`, `shared`, your `<USERID>` and 
-`R4Genomics` directory. The path in your script should look like this:
+Linux. Then enter the path to the folder you want to set as your working directory. For example, if you have a folder on your desktop called `bioinformatics-day`, you would enter the following command:
 
-!!! r-project
+(Note: replace `username` with your actual username on your computer!)
 
-    ```r
-    # This sets the working directory 
-    setwd("/home/shared/<USERID>/R4Genomics")
-    ```
+```{r}
+#| eval: false
+
+# This sets the working directory 
+setwd("/Users/username/Desktop/bioinformatics-day")
+```
 
 When you run this command, the console repeats the command, but gives
 you no output. Instead, you see the blank R prompt: `>`.
 Congratulations! Although it seems small, knowing what your working
 directory is and being able to set your working directory is the first
-step to analyzing your data.
+step to analysing your data.
 
 
 
@@ -426,6 +428,4 @@ We will need a few different packages today, let's start with installing those:
 install.packages("tidyverse")
 install.packages("BiocManager")
 BiocManager::install("DESeq2")
-install.packages("ggiraph")
-install.packages("plotly")
 ```

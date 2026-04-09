@@ -17,11 +17,13 @@ Look at the section on the website here summarising the information about the ge
 
 ##### EXERCISE 🧠🏋️‍♀️ (5 mins) - GeneCards
 
-Take a few minutes to explore the GeneCards page for *ALOX15B* and see what information you can find about the gene. What is its function? Where is it expressed? Does it interact with any other proteins? Checkout some of the links to other databases and see what information you can find there as well.*(Note: The Ensembl website is occasionally down and you may not be able to access it, but you can still explore the other databases.)*
+Take a few minutes to explore the GeneCards page for *ALOX15B* and see what information you can find about the gene. What is its function? Where is it expressed? Does it interact with any other proteins? Checkout some of the links to other databases and see what information you can find there as well.
+
+*Note: The Ensembl website is occasionally down and you may not be able to access it, but you can still explore the other databases.*
 
 ## NCBI 
 
-Tthe National Center for Biotechnology Information (NCBI), hosted by the National Library of Medicine (USA Government), is a comprehensive resource for genomic information. It includes a variety of databases, such as GenBank, which is a repository of nucleotide sequences, and RefSeq, which is a curated collection of reference sequences for genes and proteins. It also includes tools for sequence analysis, such as BLAST, which allows you to compare your sequence of interest to other sequences in the database to find similar sequences and identify potential functions.
+The National Center for Biotechnology Information (NCBI), hosted by the National Library of Medicine (USA Government), is a comprehensive resource for genomic information. It includes a variety of databases, such as GenBank, which is a repository of nucleotide sequences, and RefSeq, which is a curated collection of reference sequences for genes and proteins. It also includes tools for sequence analysis, such as BLAST, which allows you to compare your sequence of interest to other sequences in the database to find similar sequences and identify potential functions.
 
 
 ##### EXERCISE 🧠🏋️‍♀️ (10 mins) - GenBank 
@@ -64,7 +66,7 @@ Here we are going to BLAST our human *ALOX15B* protein sequence against the non-
 1. Click on the protein ID link (NP_001132.2) on the GenBank page for *ALOX15B* to get to the protein sequence page. It is under the cds section of the GenBank entry.  
 2. Click on the 'Run BLAST' button on the right side of the page to open a BLAST search for the protein sequence.  
 3. On the BLAST page, change the following parameters:  
-    -  Set the database to 'RefSeq protein' database. This is a curated database of reference sequences for genes and proteins, which can help us find high-quality matches to our sequence of interest.  
+    -  Set the database to 'Reference proteins (refseq_protein)' database. This is a curated database of reference sequences for genes and proteins, which can help us find high-quality matches to our sequence of interest.  
     - Limit the records to 'Primates (taxid:9443)', which will restrict our search to sequences from primates, including humans and other closely related species.  
 4. Click the 'BLAST' button at the bottom of the page to start the search. This can take a few minutes to run, so be patient!  
 

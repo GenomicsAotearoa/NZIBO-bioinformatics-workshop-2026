@@ -202,6 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#advantages-of-using-r" id="toc-advantages-of-using-r" class="nav-link" data-scroll-target="#advantages-of-using-r">Advantages of using R</a></li>
   <li><a href="#introducing-rstudio-server" id="toc-introducing-rstudio-server" class="nav-link" data-scroll-target="#introducing-rstudio-server">Introducing RStudio Server</a></li>
   <li><a href="#overview-and-customisation-of-the-rstudio-layout" id="toc-overview-and-customisation-of-the-rstudio-layout" class="nav-link" data-scroll-target="#overview-and-customisation-of-the-rstudio-layout">Overview and customisation of the RStudio layout</a></li>
+  <li><a href="#set-up-for-today" id="toc-set-up-for-today" class="nav-link" data-scroll-target="#set-up-for-today">Set-up for today</a></li>
   <li><a href="#creating-your-first-r-script" id="toc-creating-your-first-r-script" class="nav-link" data-scroll-target="#creating-your-first-r-script">Creating your first R script</a></li>
   <li><a href="#getting-to-work-with-r-navigating-directories" id="toc-getting-to-work-with-r-navigating-directories" class="nav-link" data-scroll-target="#getting-to-work-with-r-navigating-directories">Getting to work with R: Navigating directories</a></li>
   <li><a href="#using-functions-in-r-without-needing-to-master-them" id="toc-using-functions-in-r-without-needing-to-master-them" class="nav-link" data-scroll-target="#using-functions-in-r-without-needing-to-master-them">Using functions in R, without needing to master them</a></li>
@@ -352,6 +353,10 @@ Extra for experts - RStudio Projects
 </div>
 </div>
 </section>
+<section id="set-up-for-today" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-for-today">Set-up for today</h2>
+<p>First, go to your desktop and create a folder called <code>bioinformatics-day</code>. This is where we will save all of the files we create during this workshop. You can also create an RStudio project for this folder if you like (see above).</p>
+</section>
 <section id="creating-your-first-r-script" class="level2">
 <h2 class="anchored" data-anchor-id="creating-your-first-r-script">Creating your first R script</h2>
 <p>Now that we are ready to start exploring R, we will want to keep a record of the commands we are using. To do this we can create an R script:</p>
@@ -376,18 +381,19 @@ Extra for experts - RStudio Projects
 </code></pre>
 <p>Since we will be learning several commands, we may already want to keep some short notes in our script to explain the purpose of the command. Entering a <code>#</code> before any line in an R script turns that line into a comment, which R will not try to interpret as code. Edit your script to include a comment on the purpose of commands you are learning, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this command shows the current working directory getwd()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># this command shows the current working directory </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For the purposes of this exercise we want you to be in the directory <code>"/home/shared/&lt;USERID&gt;/R4Genomics"</code>. What if you weren’t? You can set your home directory using the <code>setwd()</code> command. Enter this command in your script, but <strong><em>don’t run</em></strong> this yet.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This sets the working directory</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You may have guessed, you need to tell the <code>setwd()</code> command what directory you want to set as your working directory. To do so, inside of the parentheses, open a set of quotes <code>""</code>. Inside the quotes enter a <code>/</code> which is the root directory for Linux. Next, use the <code>Tab</code> key, to take advantage of RStudio’s tab-autocompletion method, to select <code>home</code>, <code>shared</code>, your <code>&lt;USERID&gt;</code> and <code>R4Genomics</code> directory. The path in your script should look like this:</p>
-<p>!!! r-project</p>
-<pre><code>```r
-# This sets the working directory 
-setwd("/home/shared/&lt;USERID&gt;/R4Genomics")
-```</code></pre>
-<p>When you run this command, the console repeats the command, but gives you no output. Instead, you see the blank R prompt: <code>&gt;</code>. Congratulations! Although it seems small, knowing what your working directory is and being able to set your working directory is the first step to analyzing your data.</p>
+<p>You can set your home directory using the <code>setwd()</code> command. Enter this command in your script, but <strong><em>don’t run</em></strong> this yet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>() <span class="co"># This sets the working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You may have guessed, you need to tell the <code>setwd()</code> command what directory you want to set as your working directory. To do so, inside of the parentheses, open a set of quotes <code>""</code>. Inside the quotes enter a <code>/</code> which is the root directory for Linux. Then enter the path to the folder you want to set as your working directory. For example, if you have a folder on your desktop called <code>bioinformatics-day</code>, you would enter the following command:</p>
+<p>(Note: replace <code>username</code> with your actual username on your computer!)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This sets the working directory </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/Users/username/Desktop/bioinformatics-day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When you run this command, the console repeats the command, but gives you no output. Instead, you see the blank R prompt: <code>&gt;</code>. Congratulations! Although it seems small, knowing what your working directory is and being able to set your working directory is the first step to analysing your data.</p>
 </section>
 <section id="using-functions-in-r-without-needing-to-master-them" class="level2">
 <h2 class="anchored" data-anchor-id="using-functions-in-r-without-needing-to-master-them">Using functions in R, without needing to master them</h2>
@@ -560,9 +566,7 @@ Solution
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"DESeq2"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggiraph"</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"plotly"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"DESeq2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

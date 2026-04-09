@@ -41,11 +41,6 @@ countdata <- readRDS("data/countdata.rds")
 ```
 
 
-```{r}
-#| eval: false
-
-install.packages("DESeq2")
-```
 
 ```{r}
 #| message: false
@@ -61,7 +56,15 @@ We will use DEseq to to generate a special type of object in R, which will be ca
 # factorise coldata columns to make R see each column as groups 
 coldata$dex <-  relevel(factor(coldata$dex), ref = "untrt")
 coldata$cell <- factor(coldata$cell)
+```
 
+Check factor levels:
+
+```{r}
+str(coldata)
+```
+
+```{r}
 # now make the special deseq object, loading in counts and metadata and choosing the design
 dds <- DESeqDataSetFromMatrix(countData = countdata, 
                               colData = coldata,
