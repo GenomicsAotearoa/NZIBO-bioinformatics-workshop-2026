@@ -159,7 +159,7 @@ library(tidyverse)
 ```
 
 
-First we will convert the counts to a 'long' format. Don't worry too much about how this code is working. What is happening is we are making a new dataframe caled counts_long, which are in a format that ggplot prefers. The data itself has not changed, it has simply re-arranged. 
+First we will convert the counts to a 'long' format. Don't worry too much about how this code is working. What is happening is we are making a new dataframe called counts_long, which are in a format that ggplot prefers. The data itself has not changed, it has simply re-arranged. 
 ```{r}
 # Convert counts data to long format for ggplot
 counts_long <- countdata |>
